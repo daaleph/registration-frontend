@@ -1,0 +1,253 @@
+/* frontend/src/styles/register.module.css */
+.registrationContainer {
+  width: auto;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.1);
+  border-radius: 8px;
+  animation: fadeIn 1s ease-out;
+  position: relative;
+}
+
+.registrationContainer:after {
+  content: '';
+  position: fixed;
+  left: 10%;
+  bottom: 0;
+  width: 80%;
+  height: 1px;
+  background: var(--secondary-color);
+  box-shadow: 
+    0 0 5px var(--secondary-color),
+    0 0 10px var(--secondary-color),
+    0 0 15px var(--secondary-color);
+  animation: glowPulse 2s ease-in-out infinite;
+  z-index: 1000;
+}
+
+.welcomeSection {
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 10rem 0 10rem;
+  line-height: 1.2;
+  font-family: 'Montserrat', Sans-Serif;
+  color: var(--secondary-color);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.subTitle {
+  font-size: 2rem;
+  font-weight: 100;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--forth-color);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gothicText {
+  margin: 1.5rem 0;
+  font-weight: 100;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--forth-color);
+}
+
+.privacyNotice {
+  margin: 2rem 0;
+  padding: 1rem;
+  max-width: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.privacyTitle {
+  padding-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-primary-color);
+  font-size: 1.2rem;
+}
+
+.privacyText {
+  color: var(--forth-color);
+  font-family: 'IBM Mono Space', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  
+}
+
+.formWrapper {
+  width: 100%;
+  margin: 10%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.formGroup label {
+  font-family: 'Merryweather', sans-serif;
+}
+
+.formGroup input {
+  font-family: 'IBM Mono Space', monospace;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-primary-color);
+  font-size: 1rem;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 0, 0.8);
+  box-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.gothicText {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--forth-color);
+  letter-spacing: 2px;
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+.errorDisplay {
+  padding: 1rem;
+  margin: 1rem 0;
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  color: var(--error-color);
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.submitButton {
+  width: fit-content;
+  padding: 1.2rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary-color);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 6px;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: rgba(255, 255, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 255, 0, 0.1);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.formFooter {
+  font-size: 1rem;
+  font-family: 'IBM Mono Space', monospace;
+  margin-top: 1rem;
+  text-align: left;
+  text-align: left;
+}
+
+.calmText {
+  color: var(--forth-color);
+  font-size: 1rem;
+  text-align: right;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.passwordRequirements {
+  text-align: left;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.passwordRequirements ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+.passwordRequirements li {
+  margin: 0.3rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.passwordRequirements li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  color: #ff4444;
+}
+
+.passwordRequirements li.valid::before {
+  content: '✓';
+  color: #4CAF50;
+}
+
+.invalid {
+  color: #666;
+}
+
+.valid {
+  color: #4CAF50;
+}

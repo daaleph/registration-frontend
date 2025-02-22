@@ -1,0 +1,326 @@
+/* frontend/src/styles/components.module.css */
+
+.content {
+  width: auto;
+  max-width: 40rem;
+  margin: 2rem auto;
+}
+
+.questionForm {
+  width: auto;
+  margin: 1rem;
+}
+
+.questionFormLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 12px;
+  min-height: 200px;
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.questionFormLoading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: #000000;
+  animation: loadingLine 2s infinite linear;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.optionButton {
+  width: 100%;
+  padding: 1rem;
+  cursor: pointer;
+  text-align: right;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.optionButton {
+  transition: all 0.3s ease;
+}
+
+.optionButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.optionButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.optionButton.selected {
+  border-color: var(--border-color);
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color);
+  }
+}
+
+.optionText {
+  display: block;
+  font-weight: 500;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+/* For better browser compatibility */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .optionText {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.otherInput {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.errorMessage {
+  color: var(--error-color);
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.phaseNavigation {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.navButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.errorDisplay {
+  padding: 15px;
+  background: #ffebee;
+  border: 1px solid #ffcdd2;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.retryButton {
+  margin-top: 10px;
+  padding: 5px 15px;
+  background: #c62828;
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  align-items: center;
+  min-height: 200px;
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-top: 4px solid var(--secondary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-top: 60px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+  font-family: 'Montserrat', 'Playfair Display', 'Helvetica Neue', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', Arial, sans-serif;
+  letter-spacing: -0.02em;
+  color: var(--secondary-color);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.highlight {
+  font-family: 'Playfair Display', 'Baskerville', 'Georgia', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.hookText {
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+  font-weight: 500;
+  font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  opacity: 0.8;
+  color: #81b7b6b0;
+}
+
+.revealButton {
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+               0 0 20px rgba(220, 196, 19, 0.357),
+               0 0 30px rgba(207, 207, 10, 0.676);
+  backdrop-filter: blur(5px);
+}
+
+.revealButton:hover {
+  transform: translateY(-2px);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.7),
+               0 0 25px rgba(255, 255, 255, 0.5),
+               0 0 35px rgba(255, 255, 255, 0.3);
+}
+
+.revealButton:active {
+  transform: translateY(0);
+  opacity: 0.8;
+}
+
+.description {
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  margin: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes loadingLine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.submitButton {
+  color: var(--primary-text-color);
+  background-color: var(--secondary-text-color);
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:hover {
+  color: var(--secondary-text-color);
+  background-color: var(--third-color);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:disabled {
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  filter: blur(2px);
+}
+
+.loginContainer {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
