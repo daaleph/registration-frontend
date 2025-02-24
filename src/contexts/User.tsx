@@ -21,6 +21,7 @@ interface UserContextType {
   setResponses: (variable: string, answer: number[] | number) => void;
   setCurrentPhase: (phase: Phases) => void;
   setProgress: () => void;
+  setPreviousState: (level: number, variable: number) => void;
   setAuthToken: (token: string | null) => void;
   setError: (error: string | null) => void;
   setIsLoading: (loading: boolean) => void;
@@ -30,6 +31,8 @@ interface UserContextType {
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
+
+const PHASES: Array<Phases> = ['PROFILE', 'BFI', 'PRODUCT'];
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   
@@ -71,11 +74,25 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
+  const setPreviousState = (level: number, variable: number) => {
+    setProgressState(prevProgress => {
+      const newProgress = new Map(prevProgress);
+      if (level > 0) {
+        for (var i = 0; i < level; i++) {
+          newProgress.set(PHASES[i], 101);
+        } 
+      }
+      newProgress.set(PHASES[level], ProgressIncrements[PHASES[level]] * variable);
+      return newProgress;
+    });
+    console.log("PROGRESS:", progress);
+    setCurrentPhase(PHASES[level]);
+  }
+
   const moveToNextPhase = () => {
-    const phases: Array<Phases> = ['PROFILE', 'BFI', 'PRODUCT'];
-    const currentIndex = phases.indexOf(currentPhase);
-    if (currentIndex < phases.length - 1) {
-      const newPhase = phases[currentIndex + 1]
+    const currentIndex = PHASES.indexOf(currentPhase);
+    if (currentIndex < PHASES.length - 1) {
+      const newPhase = PHASES[currentIndex + 1]
       router.push(`/${newPhase.toLowerCase()}`);
       setCurrentPhase(newPhase);
       setProgress();
@@ -98,6 +115,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setResponses,
     setCurrentPhase,
     setProgress,
+    setPreviousState,
     setAuthToken,
     setError,
     setIsLoading,

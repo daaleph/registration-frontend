@@ -12,9 +12,9 @@ import Head from 'next/head';
 
 const InitialRegistration: React.FC = () => {
   const router = useRouter();
-  const { setUserProfile } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { setUserProfile, setPreviousState } = useUser();
   const [formData, setFormData] = useState<UserProfile>({
     id: '',
     complete_name: '',
@@ -69,10 +69,27 @@ const InitialRegistration: React.FC = () => {
 
   const handleSubmit = async () => {
     if (!validateForm()) return;
+    
     try {
+      let response;
       setIsLoading(true);
       const profileService = ProfileService.getInstance();
-      const response = await profileService.createProfile<{ id: string }>(formData);
+      const profileInfo = await authService.profileExists<UserProfile>(formData.email);
+      if (profileInfo) {
+        response = profileInfo;
+        const latestAnswer = await authService.latestAnswer(formData.email);
+        setPreviousState(latestAnswer.level, Number(latestAnswer.variable.slice(-2)));
+        const urlToPages = ['profile', 'bfi', 'product'];
+        console.log("LAL:", latestAnswer.level, "LAV:", Number(latestAnswer.variable.slice(-2)));
+        const newProfile = {
+          ...formData,
+          id: response.id
+        };
+        setUserProfile(newProfile);
+        router.push(`/${urlToPages[latestAnswer.level]}`, undefined, { shallow: true });
+      } else {
+        response = await profileService.createProfile<{ id: string }>(formData);
+      }
       const newProfile = {
         ...formData,
         id: response.id
