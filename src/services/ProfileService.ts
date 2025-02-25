@@ -39,15 +39,11 @@ export class ProfileService {
       HttpUtility.post<T>(`${this.baseUrl}profile/create`, data)
     );
   }
-
-  async getInitialQuestionWithOptions<T>(progress: Progress, currentPhase: keyof typeof ProgressIncrements, uuid: string): Promise<T> {
-    const initialPercentage = ProgressIncrements[currentPhase];
-    const currentProgress = progress.get(currentPhase);
-    if (currentProgress === initialPercentage) return await HttpUtility.withRetry(() => 
+  
+  async getInitialQuestionWithOptions<T>(): Promise<T> {
+    return await HttpUtility.withRetry(() => 
       HttpUtility.get<T>(`${this.baseUrl}questions/profile/initial`)
     );
-    const question = Math.round(progress.get(currentPhase)! / QuestionsByNature[currentPhase]);
-    return this.getQuestionWithOptions(uuid, question);
   }
 
   async getQuestionWithOptions<T>(

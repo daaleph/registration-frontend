@@ -64,11 +64,7 @@ const ProfilePage: React.FC = () => {
     try {
       await controllerState.controller.initializeQuestions<QuestionWithOptions>(
         userProfile.id,
-        (uuid: string) => profileService.getInitialQuestionWithOptions<QuestionWithOptions>(
-          progress,
-          currentPhase,
-          uuid
-        )
+        profileService.getInitialQuestionWithOptions.bind(profileService)
       );
       setControllerState(current => ({
         ...current,
