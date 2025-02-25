@@ -1,7 +1,7 @@
 // frontend/src/pages/product.tsx
 import React, { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { Phases, useUser } from '../contexts/User';
+import { useUser } from '../contexts/User';
 import { QuestionForm } from '../components/common/QuestionForm';
 import { ErrorDisplay } from '../components/common/ErrorDisplay';
 import { QuestionController, QuestionState } from '@/controllers';
@@ -11,6 +11,7 @@ import styles from '../styles/components.module.css';
 import { LoadingState } from '@/components/common/LoadingState';
 import Head from 'next/head';
 import { QuestionWithOptions } from '@/models/interfaces';
+import { Phases } from '@/types/states';
 
 const ProfilePage: React.FC = () => {
     const QUESTIONTYPE: Phases = 'PRODUCT';

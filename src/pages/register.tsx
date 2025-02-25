@@ -80,12 +80,9 @@ const InitialRegistration: React.FC = () => {
           ...formData,
           id: profileInfo.id
         };
-        console.log("NEW PROFILE:", newProfile);
-        console.log("PROFILE INFO:", profileInfo);
         setUserProfile(newProfile);
         const previousState = await authService.previousState(formData.email);
         setPreviousState(previousState);
-        console.log("CURRENT PHASE:", currentPhase);
         router.push(`/${currentPhase.toLowerCase()}`, undefined, { shallow: true });
       } else {
         response = await profileService.createProfile<{ id: string }>(formData);

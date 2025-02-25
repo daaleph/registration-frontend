@@ -1,7 +1,7 @@
 // frontend/src/pages/profile.tsx
 import React, { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { Phases, useUser } from '../contexts/User';
+import { useUser } from '../contexts/User';
 import { QuestionForm } from '../components/common/QuestionForm';
 import { ErrorDisplay } from '../components/common/ErrorDisplay';
 import { QuestionController, QuestionState } from '@/controllers';
@@ -11,6 +11,7 @@ import { hookManager } from '@/marketing/hooks';
 import styles from '../styles/components.module.css';
 import Head from 'next/head';
 import { QuestionWithOptions } from '@/models/interfaces';
+import { Phases } from '@/types/states';
 
 const ProfilePage: React.FC = () => {
   
@@ -80,8 +81,6 @@ const ProfilePage: React.FC = () => {
 
   // Initialize questions when component mounts
   useEffect(() => {
-    console.log("ROUTER:", router.isReady);
-    console.log("USER PROFILE:", userProfile?.id);
     initQuestions();
   }, [router.isReady, userProfile?.id]);
 

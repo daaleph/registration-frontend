@@ -1,7 +1,7 @@
 // frontend/src/pages/bfi.tsx
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Phases, useUser } from '../contexts/User';
+import { useUser } from '../contexts/User';
 import { QuestionForm } from '../components/common/QuestionForm';
 import { ErrorDisplay } from '../components/common/ErrorDisplay';
 import { QuestionController, QuestionState } from '@/controllers';
@@ -11,6 +11,7 @@ import styles from '../styles/components.module.css';
 import { LoadingState } from '@/components/common/LoadingState';
 import Head from 'next/head';
 import { QuestionWithOptions } from '@/models/interfaces';
+import { Phases } from '@/types/states';
 
 const BfiPage: React.FC = () => {
   const QUESTIONTYPE: Phases = 'BFI';
@@ -58,23 +59,24 @@ const BfiPage: React.FC = () => {
     };
   });
 
+  const initQuestions = async () => {
+    if (!router.isReady || typeof userProfile?.id !== "string") return;
+    try {
+      await controllerState.controller.initializeQuestions<QuestionWithOptions>(
+        userProfile.id,
+        bfiService.getInitialQuestionWithOptions.bind(bfiService)
+      );
+      setControllerState(current => ({
+        ...current,
+        state: current.controller.getState()
+      }));
+    } catch (error) {
+      console.error('Failed to initialize questions:', error);
+    }
+  };
+
   // Initialize questions when component mounts
   useEffect(() => {
-    const initQuestions = async () => {
-      if (!router.isReady || typeof userProfile?.id !== "string") return;
-      try {
-        await controllerState.controller.initializeQuestions<QuestionWithOptions>(
-          userProfile.id,
-          bfiService.getInitialQuestionWithOptions.bind(bfiService)
-        );
-        setControllerState(current => ({
-          ...current,
-          state: current.controller.getState()
-        }));
-      } catch (error) {
-        console.error('Failed to initialize questions:', error);
-      }
-    };
     initQuestions();
   }, [router.isReady, userProfile?.id]);
 
