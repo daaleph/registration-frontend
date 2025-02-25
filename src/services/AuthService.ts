@@ -25,6 +25,36 @@ export default class AuthService {
         setCsrfToken(response.csrfToken)
     }
 
+    async profileExists<T>(
+        email: string
+    ): Promise<T> {
+        return await HttpUtility.withRetry(() => 
+            HttpUtility.get<T>(`${this.baseUrl}auth/profile-exists`, {
+                email
+            })
+        );
+    }
+
+    async previousState(
+        email: string
+    ): Promise<any> {
+        return await HttpUtility.withRetry(() => 
+            HttpUtility.get<any>(`${this.baseUrl}auth/previous-state`, {
+                email
+            })
+        );
+    }
+
+    async validatesPasswordExistance<T>(
+        email: string
+    ): Promise<T> {
+        return await HttpUtility.withRetry(() => 
+            HttpUtility.get<T>(`${this.baseUrl}auth/password-existance`, {
+                email
+            })
+        );
+    }
+
     async login<T>(
         email: string,
         password: string

@@ -12,9 +12,9 @@ import Head from 'next/head';
 
 const InitialRegistration: React.FC = () => {
   const router = useRouter();
-  const { setUserProfile } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { setUserProfile, setPreviousState, currentPhase } = useUser();
   const [formData, setFormData] = useState<UserProfile>({
     id: '',
     complete_name: '',
@@ -69,16 +69,33 @@ const InitialRegistration: React.FC = () => {
 
   const handleSubmit = async () => {
     if (!validateForm()) return;
+    
     try {
+      let response;
       setIsLoading(true);
       const profileService = ProfileService.getInstance();
-      const response = await profileService.createProfile<{ id: string }>(formData);
-      const newProfile = {
-        ...formData,
-        id: response.id
-      };
-      setUserProfile(newProfile);
-      router.push(`/profile`, undefined, { shallow: true });
+      const profileInfo = await authService.profileExists<UserProfile>(formData.email);
+      if (profileInfo) {
+        const newProfile = {
+          ...formData,
+          id: profileInfo.id
+        };
+        console.log("NEW PROFILE:", newProfile);
+        console.log("PROFILE INFO:", profileInfo);
+        setUserProfile(newProfile);
+        const previousState = await authService.previousState(formData.email);
+        setPreviousState(previousState);
+        console.log("CURRENT PHASE:", currentPhase);
+        router.push(`/${currentPhase.toLowerCase()}`, undefined, { shallow: true });
+      } else {
+        response = await profileService.createProfile<{ id: string }>(formData);
+        const newProfile = {
+          ...formData,
+          id: response.id
+        };
+        setUserProfile(newProfile);
+        router.push('/profile', undefined, { shallow: true });
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create profile');
     } finally {

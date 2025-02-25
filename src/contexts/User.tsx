@@ -1,10 +1,11 @@
 // frontend/src/context/UserContext.tsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { UserProfile } from '../models/interfaces';
-import { ProgressIncrements } from '@/components/navigation/phases';
+import { ProgressIncrements, QuestionsByNature } from '@/components/navigation/phases';
 import { useRouter } from 'next/router';
+import { Phases, PHASES, Progress, QuestionsState } from '@/types/states';
 
-export type Phases = 'PROFILE' | 'BFI' | 'PRODUCT';
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
 interface UserContextType {
   // Core user data
@@ -17,10 +18,11 @@ interface UserContextType {
   isLoading: boolean;
 
   // State setters
-  setUserProfile: (PROFILE: UserProfile) => void;
+  setUserProfile: (profile: UserProfile) => void;
   setResponses: (variable: string, answer: number[] | number) => void;
   setCurrentPhase: (phase: Phases) => void;
   setProgress: () => void;
+  setPreviousState: (state: QuestionsState) => void;
   setAuthToken: (token: string | null) => void;
   setError: (error: string | null) => void;
   setIsLoading: (loading: boolean) => void;
@@ -28,8 +30,6 @@ interface UserContextType {
   // Phase management
   moveToNextPhase: () => void;
 }
-
-const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   
@@ -40,7 +40,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [authToken, setAuthToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [progress, setProgressState] = useState<Map<Phases, number>>(
+  const [progress, setProgressState] = useState<Progress>(
     new Map([
       ['PROFILE', ProgressIncrements.PROFILE],
       ['BFI', ProgressIncrements.BFI],
@@ -51,6 +51,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     if (progress.get(currentPhase)! > 100) moveToNextPhase();
   }, [progress]);
+
+  useEffect(() => {
+    console.log("PROGRESS:", progress);
+  }, [progress])
+
+  useEffect(() => {
+    console.log("USER PROFILE:", userProfile);
+  }, [userProfile])
 
   // Response management
   const setResponses = (variable: string, answer: number[] | number) => {
@@ -71,11 +79,26 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
+  const setPreviousState = (state: QuestionsState) => {
+    setProgressState(prevProgress => {
+      const newProgress = new Map(prevProgress);
+      for (const phase of PHASES) {
+        const key = Object.keys(state).find((key) => key.endsWith(phase.toLowerCase())) as keyof QuestionsState;
+        var advance = state[key];
+        if (phase === 'PROFILE' && advance < 4) advance = 1;
+        const totalQuestions = QuestionsByNature[phase];
+        newProgress.set(phase, advance * ProgressIncrements[phase] + 1);
+        if (advance != totalQuestions) break;
+        setCurrentPhase(phase);
+      }
+      return newProgress;
+    });
+  }
+
   const moveToNextPhase = () => {
-    const phases: Array<Phases> = ['PROFILE', 'BFI', 'PRODUCT'];
-    const currentIndex = phases.indexOf(currentPhase);
-    if (currentIndex < phases.length - 1) {
-      const newPhase = phases[currentIndex + 1]
+    const currentIndex = PHASES.indexOf(currentPhase);
+    if (currentIndex < PHASES.length - 1) {
+      const newPhase = PHASES[currentIndex + 1]
       router.push(`/${newPhase.toLowerCase()}`);
       setCurrentPhase(newPhase);
       setProgress();
@@ -98,6 +121,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setResponses,
     setCurrentPhase,
     setProgress,
+    setPreviousState,
     setAuthToken,
     setError,
     setIsLoading,
