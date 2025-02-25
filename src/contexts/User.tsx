@@ -1,7 +1,7 @@
 // frontend/src/context/UserContext.tsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { UserProfile } from '../models/interfaces';
-import { ProgressIncrements, QuestionsByNature } from '@/components/navigation/phases';
+import { ProgressIncrements, QuestionsByNature } from '@/data/phases';
 import { useRouter } from 'next/router';
 import { Phases, PHASES, Progress, QuestionsState } from '@/types/states';
 

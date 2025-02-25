@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useUser } from '../contexts/User';
 import { ProfileService } from '../services/ProfileService';
-import AuthService from '../services/AuthService';
+import AuthService from '../services/Auth';
 import { ErrorDisplay } from '../components/common/ErrorDisplay';
 import { UserProfile } from '@/models/interfaces';
 import { LoadingState } from '@/components/common/LoadingState';

@@ -1,8 +1,6 @@
 // frontend/src/services/ProfileService.ts
 import { UserProfile } from "@/models/interfaces";
 import { HttpUtility } from "./HttpUtility";
-import { ProgressIncrements, QuestionsByNature } from "@/components/navigation/phases";
-import { Progress } from "@/types/states";
 
 export class ProfileService {
   
@@ -39,7 +37,7 @@ export class ProfileService {
       HttpUtility.post<T>(`${this.baseUrl}profile/create`, data)
     );
   }
-  
+
   async getInitialQuestionWithOptions<T>(): Promise<T> {
     return await HttpUtility.withRetry(() => 
       HttpUtility.get<T>(`${this.baseUrl}questions/profile/initial`)

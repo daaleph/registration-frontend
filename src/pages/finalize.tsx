@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import AuthService from '@/services/AuthService';
+import AuthService from '@/services/Auth';
 import { useUser } from '@/contexts/User';
 import styles from '../styles/register.module.css';
 import landingStyles from '../styles/landing.module.css';

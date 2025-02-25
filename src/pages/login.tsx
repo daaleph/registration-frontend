@@ -5,7 +5,7 @@ import styles from '@/styles/landing.module.css';
 import { useAuth } from '@/hooks/useAuth';
 import router from 'next/router';
 import Head from 'next/head';
-import AuthService from '@/services/AuthService';
+import AuthService from '@/services/Auth';
 
 const LoginPage: React.FC = () => {
     const { login } = useAuth();
