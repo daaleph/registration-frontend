@@ -14,7 +14,7 @@ const InitialRegistration: React.FC = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { setUserProfile, setPreviousState } = useUser();
+  const { setUserProfile, setPreviousState, currentPhase } = useUser();
   const [formData, setFormData] = useState<UserProfile>({
     id: '',
     complete_name: '',
@@ -76,26 +76,26 @@ const InitialRegistration: React.FC = () => {
       const profileService = ProfileService.getInstance();
       const profileInfo = await authService.profileExists<UserProfile>(formData.email);
       if (profileInfo) {
-        response = profileInfo;
-        const latestAnswer = await authService.latestAnswer(formData.email);
-        setPreviousState(latestAnswer.level, Number(latestAnswer.variable.slice(-2)));
-        const urlToPages = ['profile', 'bfi', 'product'];
-        console.log("LAL:", latestAnswer.level, "LAV:", Number(latestAnswer.variable.slice(-2)));
+        const newProfile = {
+          ...formData,
+          id: profileInfo.id
+        };
+        console.log("NEW PROFILE:", newProfile);
+        console.log("PROFILE INFO:", profileInfo);
+        setUserProfile(newProfile);
+        const previousState = await authService.previousState(formData.email);
+        setPreviousState(previousState);
+        console.log("CURRENT PHASE:", currentPhase);
+        router.push(`/${currentPhase.toLowerCase()}`, undefined, { shallow: true });
+      } else {
+        response = await profileService.createProfile<{ id: string }>(formData);
         const newProfile = {
           ...formData,
           id: response.id
         };
         setUserProfile(newProfile);
-        router.push(`/${urlToPages[latestAnswer.level]}`, undefined, { shallow: true });
-      } else {
-        response = await profileService.createProfile<{ id: string }>(formData);
+        router.push('/profile', undefined, { shallow: true });
       }
-      const newProfile = {
-        ...formData,
-        id: response.id
-      };
-      setUserProfile(newProfile);
-      router.push(`/profile`, undefined, { shallow: true });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create profile');
     } finally {

@@ -10,3 +10,11 @@ export interface ErrorState {
   code?: string;
   details?: unknown;
 }
+
+export interface QuestionsState {
+  [key: `counting_${string}`]: number;
+}
+
+export type Progress = Map<Phases, number>;
+export type Phases = 'PROFILE' | 'BFI' | 'PRODUCT';
+export const PHASES: Array<Phases> = ['PROFILE', 'BFI', 'PRODUCT'];

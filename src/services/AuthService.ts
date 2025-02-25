@@ -2,7 +2,6 @@
 import { CsrfToken } from '@/types/security';
 import { HttpUtility } from './HttpUtility';
 import { setCsrfToken } from './axios.config';
-import { useUser } from '@/contexts/User';
 
 export default class AuthService {
     private baseUrl: string;
@@ -36,11 +35,11 @@ export default class AuthService {
         );
     }
 
-    async latestAnswer(
+    async previousState(
         email: string
     ): Promise<any> {
         return await HttpUtility.withRetry(() => 
-            HttpUtility.get<any>(`${this.baseUrl}auth/latest-answer`, {
+            HttpUtility.get<any>(`${this.baseUrl}auth/previous-state`, {
                 email
             })
         );

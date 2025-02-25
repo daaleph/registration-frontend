@@ -58,23 +58,30 @@ const ProfilePage: React.FC = () => {
     };
   });
 
+  const initQuestions = async () => {
+    if (!router.isReady || typeof userProfile?.id !== "string") return;
+    try {
+      await controllerState.controller.initializeQuestions<QuestionWithOptions>(
+        userProfile.id,
+        (uuid: string) => profileService.getInitialQuestionWithOptions<QuestionWithOptions>(
+          progress,
+          currentPhase,
+          uuid
+        )
+      );
+      setControllerState(current => ({
+        ...current,
+        state: current.controller.getState()
+      }));
+    } catch (error) {
+      console.error('Failed to initialize questions:', error);
+    }
+  };
+
   // Initialize questions when component mounts
   useEffect(() => {
-    const initQuestions = async () => {
-      if (!router.isReady || typeof userProfile?.id !== "string") return;
-      try {
-        await controllerState.controller.initializeQuestions<QuestionWithOptions>(
-          userProfile.id,
-          profileService.getInitialQuestionWithOptions.bind(profileService)
-        );
-        setControllerState(current => ({
-          ...current,
-          state: current.controller.getState()
-        }));
-      } catch (error) {
-        console.error('Failed to initialize questions:', error);
-      }
-    };
+    console.log("ROUTER:", router.isReady);
+    console.log("USER PROFILE:", userProfile?.id);
     initQuestions();
   }, [router.isReady, userProfile?.id]);
 
