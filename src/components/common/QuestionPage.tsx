@@ -2,17 +2,25 @@ import { useUser } from "@/contexts/User";
 import { QuestionController, QuestionState } from "@/controllers";
 import { hookManager } from "@/marketing/hooks";
 import { QuestionWithOptions } from "@/models/interfaces";
-import QuestionService from "@/services/Registration";
 import { Phases } from "@/types/states";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { LoadingState } from "../common/LoadingState";
-import { ErrorDisplay } from "../common/ErrorDisplay";
+import { LoadingState } from "./LoadingState";
+import { ErrorDisplay } from "./ErrorDisplay";
 import Head from "next/head";
-import { QuestionForm } from "../common/QuestionForm";
-import styles from '../styles/components.module.css';
+import { QuestionForm } from "./QuestionForm";
+import styles from '../../styles/components.module.css';
+import { QuestionService } from "@/services/Registration";
 
-const QuestionPage: React.FC<{ phase: Phases, service: QuestionService, loadingMessage: string, notInitializedMessage: string, title: string }> = ({ phase, service, loadingMessage, notInitializedMessage, title }) => {
+interface QuestionPageProps {
+  phase: Phases;
+  service: QuestionService;
+  loadingMessage: string;
+  notInitializedMessage: string;
+  title: string;
+}
+
+const QuestionPage: React.FC<QuestionPageProps> = ({ phase, service, loadingMessage, notInitializedMessage, title }) => {
     const router = useRouter();
     const { setResponses, setProgress, progress, userProfile, currentPhase } = useUser();
     const [answerSelected, setAnswerSelected] = useState(false);
@@ -52,7 +60,11 @@ const QuestionPage: React.FC<{ phase: Phases, service: QuestionService, loadingM
       try {
         await controllerState.controller.initializeQuestions<QuestionWithOptions>(
           userProfile.id,
-          service.getInitialQuestionWithOptions.bind(service)
+          (uuid: string) => service.getInitialQuestionWithOptions<QuestionWithOptions>(
+            progress,
+            currentPhase,
+            uuid
+          )
         );
         setControllerState(current => ({
           ...current,

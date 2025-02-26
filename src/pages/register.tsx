@@ -82,6 +82,7 @@ const InitialRegistration: React.FC = () => {
         };
         setUserProfile(newProfile);
         const previousState = await authService.previousState(formData.email);
+        console.log("PREVIOUS STATE:", previousState);
         setPreviousState(previousState);
         router.push(`/${currentPhase.toLowerCase()}`, undefined, { shallow: true });
       } else {
