@@ -1,6 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 node_modules/*
 .wranglerignore
+.next/*
+.open-next/*
+.wrangler/*
 .env.local
 .env.production
 wrangler.toml
