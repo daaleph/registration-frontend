@@ -6,7 +6,7 @@
     "preinstall": "npx npm-force-resolutions",
     "dev": "dotenv -e .env.local next dev",
     "build": "dotenv -e .env.production next build",
-    "start": "dotenv -e .env.production next start",
+    "start": "dotenv -e .env.production next start --port ",
     "lint": "next lint",
     "build:worker": "dotenv -e .env.production opennextjs-cloudflare",
     "dev:worker": "dotenv -e .env.local wrangler dev --port 8771",

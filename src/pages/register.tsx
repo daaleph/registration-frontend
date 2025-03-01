@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useUser } from '../contexts/User';
 import { ProfileService } from '../services/ProfileService';
-import AuthService from '../services/AuthService';
+import AuthService from '../services/Auth';
 import { ErrorDisplay } from '../components/common/ErrorDisplay';
 import { UserProfile } from '@/models/interfaces';
 import { LoadingState } from '@/components/common/LoadingState';
@@ -17,11 +17,12 @@ const InitialRegistration: React.FC = () => {
   const { setUserProfile, setPreviousState, currentPhase } = useUser();
   const [formData, setFormData] = useState<UserProfile>({
     id: '',
-    complete_name: '',
-    preferred_name: '',
-    email: '',
-    movil: '',
-    telegram: ''
+    complete_name: 'aoisdfoiajsfoi',
+    preferred_name: 'adfpaosdkfpasodkf  ',
+    email: 'ittttti@gmail.com',
+    movil: '928472348975',
+    telegram: 'aosijdfoasijfd',
+    password: '',
   });
 
   const authService = AuthService.getInstance();
@@ -80,12 +81,13 @@ const InitialRegistration: React.FC = () => {
           ...formData,
           id: profileInfo.id
         };
-        console.log("NEW PROFILE:", newProfile);
-        console.log("PROFILE INFO:", profileInfo);
+        if (profileInfo.password) {
+          router.push('/login', undefined, { shallow: true });
+          return;
+        } 
         setUserProfile(newProfile);
-        const previousState = await authService.previousState(formData.email);
+        const previousState = await authService.previousState<{profile: number, bfi: number, product: number}>(formData.email);
         setPreviousState(previousState);
-        console.log("CURRENT PHASE:", currentPhase);
         router.push(`/${currentPhase.toLowerCase()}`, undefined, { shallow: true });
       } else {
         response = await profileService.createProfile<{ id: string }>(formData);

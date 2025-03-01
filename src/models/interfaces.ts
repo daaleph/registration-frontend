@@ -7,6 +7,7 @@ export interface UserProfile {
     email: string;
     movil: string;
     telegram: string;
+    password: string;
 }
   
 export interface Question {

@@ -35,14 +35,16 @@ export default class AuthService {
         );
     }
 
-    async previousState(
+    async previousState<T>(
         email: string
-    ): Promise<any> {
-        return await HttpUtility.withRetry(() => 
-            HttpUtility.get<any>(`${this.baseUrl}auth/previous-state`, {
+    ): Promise<T> {
+        const {counting_profile: profile, counting_bfi: bfi, counting_product: product } = 
+            await HttpUtility.withRetry(() => 
+            HttpUtility.get<{counting_profile: number, counting_bfi: number, counting_product: number}>(`${this.baseUrl}auth/previous-state`, {
                 email
             })
         );
+        return {profile, bfi, product} as T;
     }
 
     async validatesPasswordExistance<T>(

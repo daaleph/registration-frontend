@@ -29,7 +29,6 @@ export const QuestionForm: React.FC<QuestionFormProps> = ({
   setAnswerSelected,
   isLoading = false
 }) => {
-  
   const controller = React.useMemo(() => new QuestionFormController(
     onAnswerSelected,
     question.type === 'multiple'

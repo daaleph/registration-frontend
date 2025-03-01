@@ -1,5 +1,3 @@
-export * from './ProfileService';
-export * from './BFIService';
-export * from './AuthService';
+export * from './Auth';
 export * from './HttpUtility';
-export * from './ProductService';
+export * from './Registration';
