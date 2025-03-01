@@ -1,4 +1,0 @@
-# frontend/public/robots.txt
-User-agent: *
-Allow: /
-Sitemap: https://aleph-space.org/sitemap.xml
