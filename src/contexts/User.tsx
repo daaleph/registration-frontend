@@ -1,7 +1,7 @@
 // frontend/src/context/UserContext.tsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { UserProfile } from '../models/interfaces';
-import { ProgressIncrements, QuestionsByNature } from '@/data/phases';
+import { ProgressIncrements } from '@/data/phases';
 import { useRouter } from 'next/router';
 import { Phases, PHASES, Progress, QuestionsState } from '@/types/states';
 
@@ -49,16 +49,16 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   );
 
   useEffect(() => {
-    if (progress.get(currentPhase)! > 100) moveToNextPhase();
+    const isProduct = currentPhase === 'PRODUCT';
+    const progressIncrement = ProgressIncrements[currentPhase];
+    const currentProgress = progress.get(currentPhase) || progressIncrement;
+    if (currentProgress + progressIncrement < 100 && currentProgress < 100) return;
+    if (isProduct) {
+      router.push('/finalize');
+    } else {
+      moveToNextPhase();
+    }
   }, [progress]);
-
-  useEffect(() => {
-    console.log("PROGRESS:", progress);
-  }, [progress])
-
-  useEffect(() => {
-    console.log("USER PROFILE:", userProfile);
-  }, [userProfile])
 
   // Response management
   const setResponses = (variable: string, answer: number[] | number) => {
@@ -74,7 +74,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const newProgress = new Map(prevProgress);
       const increment = ProgressIncrements[currentPhase as keyof typeof ProgressIncrements];
       const currentValue = newProgress.get(currentPhase)!;
-      newProgress.set(currentPhase, Math.min(currentValue + increment, 101));
+      newProgress.set(currentPhase, currentValue + increment);
       return newProgress;
     });
   };
@@ -84,12 +84,9 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const newProgress = new Map(prevProgress);
       for (const phase of PHASES) {
         const key = Object.keys(state).find((key) => key.endsWith(phase.toLowerCase())) as keyof QuestionsState;
-        var advance = state[key];
+        let advance = state[key] + 1;
         if (phase === 'PROFILE' && advance < 4) advance = 1;
-        const totalQuestions = QuestionsByNature[phase];
-        newProgress.set(phase, advance * ProgressIncrements[phase] + 1);
-        if (advance != totalQuestions) break;
-        setCurrentPhase(phase);
+        newProgress.set(phase, advance * ProgressIncrements[phase]);
       }
       return newProgress;
     });
@@ -103,8 +100,6 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setCurrentPhase(newPhase);
       setProgress();
       setError(null);
-    } else {
-      router.push('/finalize');
     }
   };
 

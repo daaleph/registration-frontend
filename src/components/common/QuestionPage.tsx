@@ -11,6 +11,7 @@ import Head from "next/head";
 import { QuestionForm } from "./QuestionForm";
 import styles from '../../styles/components.module.css';
 import { QuestionService } from "@/services/Registration";
+import { ProgressIncrements } from "@/data/phases";
 
 interface QuestionPageProps {
   phase: Phases;
@@ -60,10 +61,10 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ phase, service, loadingMess
       try {
         await controllerState.controller.initializeQuestions<QuestionWithOptions>(
           userProfile.id,
-          (uuid: string) => service.getInitialQuestionWithOptions<QuestionWithOptions>(
+          () => service.getInitialQuestionWithOptions<QuestionWithOptions>(
             progress,
             currentPhase,
-            uuid
+            userProfile.id
           )
         );
         setControllerState(current => ({
@@ -103,7 +104,7 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ phase, service, loadingMess
           ...current,
           state: controllerState.controller.getState()
         }));
-        if (progress.get(phase)! >= 100 || phase !== currentPhase) return;
+        if (progress.get(phase)! > 100 || phase !== currentPhase) return;
         await controllerState.controller.nextQuestionWithOptions<QuestionWithOptions>(
           userProfile.id,
           controllerState.state,
@@ -148,7 +149,7 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ phase, service, loadingMess
             options={controllerState.state.currentOptions}
             onAnswerSelected={handleAnswerSelected}
             currentPhase={phase}
-            progressPercentage={progress.get(phase)}
+            progressPercentage={(progress.get(phase) || ProgressIncrements[phase]) + 2 * ProgressIncrements[phase]}
             setAnswerSelected={setAnswerSelected}
             isLoading={controllerState.state.isLoading}
           />

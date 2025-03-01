@@ -1,7 +1,7 @@
 import { UserProfile } from "@/models/interfaces";
 import { HttpUtility } from "./HttpUtility";
 import { Progress } from "@/types/states";
-import { ProgressIncrements, QuestionsByNature } from "@/data/phases";
+import { ProgressIncrements } from "@/data/phases";
 
 class Service {
     private static instances: Map<string, Service> = new Map();
@@ -49,30 +49,22 @@ export class QuestionService extends Service {
         return null;
     }
   
-    async getInitialQuestionWithOptions<T>(progress: Progress, currentPhase: keyof typeof ProgressIncrements, uuid?: string): Promise<T> {
+    async getInitialQuestionWithOptions<T>(progress: Progress, currentPhase: keyof typeof ProgressIncrements, uuid: string): Promise<T> {
         const initialPercentage = ProgressIncrements[currentPhase];
-        const currentProgress = progress.get(currentPhase);
+        const currentProgress = progress.get(currentPhase) || initialPercentage;
         const isProfile = currentPhase === 'PROFILE';
         if (currentProgress === initialPercentage) {
-            if (isProfile) return await HttpUtility.withRetry(() => 
-                HttpUtility.get<T>(`${this.baseUrl}questions/profile/initial`)
-            );
             return await HttpUtility.withRetry(() => 
-                HttpUtility.get<T>(`${this.baseUrl}questions/${this.type}/initial`)
+                HttpUtility.get<T>(`${this.baseUrl}questions/${this.type}/initial`), 11, 3000
             );
-        } // Fix this
-        console.log("CURRENT PHASE:", progress.get(currentPhase)!);
-        console.log("QUESTION BY NATURE:", QuestionsByNature[currentPhase]);
-        console.log("QUESTION:", progress.get(currentPhase)! / QuestionsByNature[currentPhase]);
-        console.log("ROUNDING:", Math.round(progress.get(currentPhase)! / QuestionsByNature[currentPhase]));
-        const question = Math.round(progress.get(currentPhase)! / QuestionsByNature[currentPhase]);
-        return this.getQuestionWithOptions(uuid!, isProfile ? question + 4 : question);
+        }
+        const question = currentProgress / initialPercentage;
+        return this.getQuestionWithOptions(uuid, isProfile ? question + 4 : question);
     }
   
-    async getQuestionWithOptions<T>(uuid: string, questionId: number): Promise<T> {
-        console.log("QUERY", `${this.baseUrl + this.questionWithIdEndpoint.replace('{questionId}', questionId.toString())}`);
+    async getQuestionWithOptions<T>(profileId: string, questionId: number): Promise<T> {
         return await HttpUtility.withRetry(() =>
-            HttpUtility.get<T>(`${this.baseUrl + this.questionWithIdEndpoint.replace('{questionId}', questionId.toString())}`, { uuid })
+            HttpUtility.get<T>(`${this.baseUrl + this.questionWithIdEndpoint.replace('{questionId}', questionId.toString())}`, { profileId })
         );
     }
   
@@ -117,7 +109,7 @@ export class BfiService extends QuestionService {
     constructor() {
         super('bfi');
     }
-  }
+}
   
 export class ProductService extends QuestionService {
     constructor() {

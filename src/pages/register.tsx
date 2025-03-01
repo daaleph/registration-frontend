@@ -17,11 +17,12 @@ const InitialRegistration: React.FC = () => {
   const { setUserProfile, setPreviousState, currentPhase } = useUser();
   const [formData, setFormData] = useState<UserProfile>({
     id: '',
-    complete_name: '',
-    preferred_name: '',
-    email: '',
-    movil: '',
-    telegram: ''
+    complete_name: 'aoisdfoiajsfoi',
+    preferred_name: 'adfpaosdkfpasodkf  ',
+    email: 'ittttti@gmail.com',
+    movil: '928472348975',
+    telegram: 'aosijdfoasijfd',
+    password: '',
   });
 
   const authService = AuthService.getInstance();
@@ -80,9 +81,12 @@ const InitialRegistration: React.FC = () => {
           ...formData,
           id: profileInfo.id
         };
+        if (profileInfo.password) {
+          router.push('/login', undefined, { shallow: true });
+          return;
+        } 
         setUserProfile(newProfile);
-        const previousState = await authService.previousState(formData.email);
-        console.log("PREVIOUS STATE:", previousState);
+        const previousState = await authService.previousState<{profile: number, bfi: number, product: number}>(formData.email);
         setPreviousState(previousState);
         router.push(`/${currentPhase.toLowerCase()}`, undefined, { shallow: true });
       } else {
