@@ -2,9 +2,7 @@
 .landingContainer {
   width: auto;
   min-width: 80%;
-  min-height: 100vh;
   margin: 0 auto;
-  padding: 3rem 3rem 3rem 3rem;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -338,9 +336,10 @@
 
 .fixedImage {
   position: fixed;
-  bottom: 20px;
+  top: 1rem;
+  right: 1rem;
   right: 20px;
-  width: 100px;
+  width: 2rem;
   height: auto;
   z-index: 1000;
   transition: transform 0.3s ease;

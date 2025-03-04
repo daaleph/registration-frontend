@@ -1,25 +1,27 @@
 // frontend/src/pages/index.tsx
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from '../styles/register.module.css';
-import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useUser } from '../contexts/User';
-import { ProfileService } from '../services/ProfileService';
+import { useCSRF } from '@/hooks/useCSRFToken';
 import AuthService from '../services/Auth';
-import { ErrorDisplay } from '../components/common/ErrorDisplay';
+import { getCsrfToken } from '../services/axios.config';
 import { UserProfile } from '@/models/interfaces';
+import styles from '../styles/register.module.css';
+import React, { useEffect, useState } from 'react';
+import { ErrorDisplay } from '../components/common/ErrorDisplay';
 import { LoadingState } from '@/components/common/LoadingState';
 
 const InitialRegistration: React.FC = () => {
   const router = useRouter();
+  const { initilizeRegistrationProcess } = useCSRF();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { setUserProfile, setPreviousState, currentPhase } = useUser();
   const [formData, setFormData] = useState<UserProfile>({
     id: '',
     complete_name: '',
-    preferred_name: '  ',
+    preferred_name: '',
     email: '',
     movil: '',
     telegram: '',
@@ -30,13 +32,12 @@ const InitialRegistration: React.FC = () => {
 
   useEffect(() => {
     async function getInitialToken() {
-        try {
-          await authService.initialToken();
-        } catch (error) {
-          console.error('Failed to get CSRF token:', error);
-        }
+      try {
+        await authService.initialToken();
+      } catch (error) {
+        console.error('Failed to get CSRF token:', error);
+      }
     }
-    
     getInitialToken();
   }, []);
 
@@ -75,7 +76,6 @@ const InitialRegistration: React.FC = () => {
     try {
       let response;
       setIsLoading(true);
-      const profileService = ProfileService.getInstance();
       const profileInfo = await authService.profileExists<UserProfile>(formData.email);
       if (profileInfo) {
         const newProfile = {
@@ -89,14 +89,16 @@ const InitialRegistration: React.FC = () => {
         setUserProfile(newProfile);
         const previousState = await authService.previousState<{profile: number, bfi: number, product: number}>(formData.email);
         setPreviousState(previousState);
+        initilizeRegistrationProcess(getCsrfToken());
         router.push(`/${currentPhase.toLowerCase()}`, undefined, { shallow: true });
       } else {
-        response = await profileService.createProfile<{ id: string }>(formData);
+        response = await authService.createProfile<{ id: string }>(formData);
         const newProfile = {
           ...formData,
           id: response.id
         };
         setUserProfile(newProfile);
+        initilizeRegistrationProcess(getCsrfToken());
         router.push('/profile', undefined, { shallow: true });
       }
     } catch (err) {
@@ -122,6 +124,15 @@ const InitialRegistration: React.FC = () => {
         <meta property="twitter:title" content="Aleph Space - Increasing universal wisdom" />
         <meta property="twitter:description" content="Where eternity tends to converge." />
       </Head>
+
+      <Image 
+        src="https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/soft-logo-white-reduced.png"
+        className={styles.fixedImage}
+        alt="Corner Logo"
+        width={100}
+        height={100}
+        priority
+      />
       
       <div className={styles.registrationContainer}>
         <div className={styles.welcomeSection}>
@@ -230,7 +241,6 @@ const InitialRegistration: React.FC = () => {
               </button>
             </div>
           </form>
-
         </div>
 
         <div className={styles.formFooter}>

@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
-    "src/components/auth/AuthGuard.tsx",
+    "src/components/guards/Auth.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [

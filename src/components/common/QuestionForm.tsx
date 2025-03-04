@@ -3,9 +3,10 @@ import styles from '../../styles/components.module.css';
 import React, { useEffect, useState } from 'react';
 import { Question, QuestionOption } from '../../models/interfaces';
 import { QuestionFormController } from '@/controllers';
+import { Hook } from '@/marketing/hooks';
 
 interface QuestionFormProps {
-  hook: {key:string, hook:string, method: string, description:string};
+  hook: Hook | null;
   showDescription: boolean;
   setShowDescription: (showDescription: boolean) => void;
   question: Question;
@@ -45,7 +46,7 @@ export const QuestionForm: React.FC<QuestionFormProps> = ({
     setFormState(controller.getState());
   }, [question.id]);
 
-  if (isLoading) {
+  if (isLoading && hook) {
     return (
       <div className={styles.questionFormLoading}>
         <div className={styles.content}>

@@ -27,7 +27,6 @@ export default function LandingPage() {
         alt="Corner Logo"
         width={100}
         height={100}
-        style={{width: '2rem', height: 'auto', top: '1rem', right: '1rem'}}
         priority
       />
       

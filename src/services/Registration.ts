@@ -1,4 +1,4 @@
-import { UserProfile } from "@/models/interfaces";
+// import { UserProfile } from "@/models/interfaces";
 import { HttpUtility } from "./HttpUtility";
 import { Progress } from "@/types/states";
 import { ProgressIncrements } from "@/data/phases";
@@ -89,18 +89,6 @@ export class QuestionService extends Service {
 export class ProfileService extends QuestionService {
     constructor() {
         super('profile', true);
-    }
-  
-    async login<T>(email: string, password: string): Promise<T> {
-        return await HttpUtility.withRetry(() =>
-            HttpUtility.post<T>(`${this.baseUrl}auth/login`, { email, password })
-        );
-    }
-  
-    async createProfile<T>(data: UserProfile): Promise<T> {
-        return await HttpUtility.withRetry(() =>
-            HttpUtility.post<T>(`${this.baseUrl}profile/create`, data)
-        );
     }
     
 }

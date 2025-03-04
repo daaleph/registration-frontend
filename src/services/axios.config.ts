@@ -17,6 +17,10 @@ export const setCsrfToken = (token: string): void => {
     csrfToken = token;
 };
 
+export const getCsrfToken = (): string => {
+    return csrfToken
+}
+
 axiosInstance.interceptors.request.use((config) => {
     if (csrfToken) {
         config.headers = config.headers || {};
