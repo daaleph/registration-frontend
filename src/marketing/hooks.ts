@@ -6,6 +6,13 @@ interface HooksDictionary {
   [key: string]: HookEntry;
 }
 
+export interface Hook {
+  key: string;
+  hook: string;
+  method: string;
+  description: string;
+}
+
 class HookManager {
 
   private static instance: HookManager;
@@ -41,7 +48,7 @@ class HookManager {
     }
   }
 
-  public getRandomHook(): { key: string; hook: string; method: string, description: string } {
+  public getRandomHook(): Hook {
     if (this.availableKeys.length === 0) {
       this.availableKeys = Object.keys(this.hooks);
     }

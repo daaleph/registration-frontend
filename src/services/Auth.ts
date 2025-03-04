@@ -2,6 +2,7 @@
 import { CsrfToken } from '@/types/security';
 import { HttpUtility } from './HttpUtility';
 import { setCsrfToken } from './axios.config';
+import { UserProfile } from '@/models/interfaces';
 
 export default class AuthService {
     private baseUrl: string;
@@ -66,6 +67,12 @@ export default class AuthService {
                 email,
                 password
             })
+        );
+    }
+  
+    async createProfile<T>(data: UserProfile): Promise<T> {
+        return await HttpUtility.withRetry(() =>
+            HttpUtility.post<T>(`${this.baseUrl}profile/create`, data)
         );
     }
 

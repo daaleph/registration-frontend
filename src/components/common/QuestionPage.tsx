@@ -1,6 +1,6 @@
 import { useUser } from "@/contexts/User";
 import { QuestionController, QuestionState } from "@/controllers";
-import { hookManager } from "@/marketing/hooks";
+import { Hook, hookManager } from "@/marketing/hooks";
 import { QuestionWithOptions } from "@/models/interfaces";
 import { Phases } from "@/types/states";
 import { useRouter } from "next/router";
@@ -26,7 +26,7 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ phase, service, loadingMess
     const { setResponses, setProgress, progress, userProfile, currentPhase } = useUser();
     const [answerSelected, setAnswerSelected] = useState(false);
     const [showDescription, setShowDescription] = useState(false);
-    const [hook, setHook] = useState(hookManager.getRandomHook());
+    const [hook, setHook] = useState<Hook>();
     const [controllerState, setControllerState] = useState<{
       controller: QuestionController;
       state: QuestionState;
@@ -55,6 +55,10 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ phase, service, loadingMess
         state: controller.getState()
       };
     });
+
+    useEffect(() => {
+      setHook(hookManager.getRandomHook());
+    }, []);
   
     const initQuestions = async () => {
       if (!router.isReady || typeof userProfile?.id !== "string") return;
@@ -119,6 +123,10 @@ const QuestionPage: React.FC<QuestionPageProps> = ({ phase, service, loadingMess
       }
     }, [userProfile?.id, controllerState.state]);
   
+    if (!hook) {
+      return <LoadingState message={'loading hook'} />;
+    }
+
     if (!controllerState.state || !router.isReady) {
       return <LoadingState message={loadingMessage} />;
     }

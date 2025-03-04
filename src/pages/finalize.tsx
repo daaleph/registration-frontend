@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import AuthService from '@/services/Auth';
 import { useUser } from '@/contexts/User';
+import CSRFGuard from '@/components/guards/CSRF';
 import styles from '../styles/register.module.css';
 import landingStyles from '../styles/landing.module.css';
 import Head from 'next/head';
@@ -64,7 +65,7 @@ const FinalizePage: React.FC = () => {
   };
 
   return (
-    <>
+    <CSRFGuard>
       <Head><title>Sellar</title></Head>
       <div className={styles.registrationContainer}>
         
@@ -158,7 +159,7 @@ const FinalizePage: React.FC = () => {
           </form>
         </div>
       </div>
-    </>
+    </CSRFGuard>
   );
 };
 

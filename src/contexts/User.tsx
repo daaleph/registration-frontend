@@ -13,6 +13,7 @@ interface UserContextType {
   responses: Map<string, number[] | number>;
   currentPhase: Phases;
   progress: Map<Phases, number>;
+  csrfToken: string | null;
   authToken: string | null;
   error: string | null;
   isLoading: boolean;
@@ -23,6 +24,7 @@ interface UserContextType {
   setCurrentPhase: (phase: Phases) => void;
   setProgress: () => void;
   setPreviousState: (state: QuestionsState) => void;
+  setCSRFToken: (token: string | null) => void;
   setAuthToken: (token: string | null) => void;
   setError: (error: string | null) => void;
   setIsLoading: (loading: boolean) => void;
@@ -37,6 +39,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [responses, setResponsesState] = useState<Map<string, number[] | number>>(new Map());
   const [currentPhase, setCurrentPhase] = useState<Phases>('PROFILE');
+  const [csrfToken, setCSRFToken] = useState<string | null>(null);
   const [authToken, setAuthToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -47,7 +50,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       ['PRODUCT', ProgressIncrements.PRODUCT]
     ])
   );
-
+  
   useEffect(() => {
     const isProduct = currentPhase === 'PRODUCT';
     const progressIncrement = ProgressIncrements[currentPhase];
@@ -109,6 +112,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     responses,
     currentPhase,
     progress,
+    csrfToken,
     authToken,
     error,
     isLoading,
@@ -117,6 +121,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCurrentPhase,
     setProgress,
     setPreviousState,
+    setCSRFToken,
     setAuthToken,
     setError,
     setIsLoading,

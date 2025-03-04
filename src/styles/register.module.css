@@ -251,3 +251,18 @@
 .valid {
   color: #4CAF50;
 }
+
+.fixedImage {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  right: 20px;
+  width: 2rem;
+  height: auto;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.fixedImage:hover {
+  transform: scale(1.1);
+}

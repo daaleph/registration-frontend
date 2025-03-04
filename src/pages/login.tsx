@@ -16,15 +16,14 @@ const LoginPage: React.FC = () => {
     const authService = AuthService.getInstance();
 
     useEffect(() => {
-      async function getInitialToken() {
-          try {
-            await authService.initialToken();
-          } catch (error) {
-            console.error('Failed to get CSRF token:', error);
-          }
-      }
-      
-      getInitialToken();
+        async function getInitialToken() {
+            try {
+                await authService.initialToken();
+            } catch (error) {
+                console.error('Failed to get CSRF token:', error);
+            }
+        }
+        getInitialToken();
     }, []);
   
 
@@ -58,7 +57,7 @@ const LoginPage: React.FC = () => {
                 <meta property="twitter:description" content="Enter to the space where eternity tends to converge." />
             </Head>
             <div className={styles.landingContainer}>
-                <div className={styles.heroSection} style={{marginBottom: '4rem', marginTop: 'auto'}}>
+                <div className={styles.heroSection} style={{ margin: 'auto', justifyContent: 'center', alignItems: 'center' }}>
                     <h1 className={styles.title}>
                         Aleph
                         <Image
@@ -66,7 +65,7 @@ const LoginPage: React.FC = () => {
                             alt="Sun of Aleph Space"
                             width={75}
                             height={75}
-                            style={{ display: 'inline', verticalAlign: 'middle', margin: '0 0.5rem' }}
+                            style={{ display: 'inline', verticalAlign: 'middle' }}
                         />
                         Space
                     </h1>
@@ -109,15 +108,17 @@ const LoginPage: React.FC = () => {
                         Continua tu jornada con propósito
                     </p>
                 </div>
-                <Image 
-                    src="https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/soft-logo-white-reduced.png"
-                    className={styles.image}
-                    alt="Corner Logo"
-                    width={100}
-                    height={100}
-                    style={{width: '10rem', height: 'auto'}}
-                    priority
-                />
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                    <Image
+                        src="https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/soft-logo-white-reduced.png"
+                        className={styles.image}
+                        alt="Corner Logo"
+                        width={100}
+                        height={100}
+                        style={{ width: '10rem', height: 'auto' }}
+                        priority
+                    />
+                </div>
             </div>
         </>
     );
