@@ -46,7 +46,7 @@ const LoginPage: React.FC = () => {
     return (
         <>
             <Head>
-                <title>Login - AS</title>
+                <title>Entrar AS</title>
                 <meta name="title" content="Aleph Space - Login" />
                 <meta name="description" content="Enter to the space where eternity tends to converge." />
                 <meta property="og:type" content="website" />
@@ -57,20 +57,20 @@ const LoginPage: React.FC = () => {
                 <meta property="twitter:title" content="Aleph Space - Login" />
                 <meta property="twitter:description" content="Enter to the space where eternity tends to converge." />
             </Head>
-            <Image 
-                src="https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/soft-logo-white-reduced.png"
-                className={styles.fixedImage}
-                alt="Corner Logo"
-                width={100}
-                height={100}
-                style={{width: '2rem', height: 'auto', top: '1rem', right: '1rem'}}
-                priority
-            />
             <div className={styles.landingContainer}>
-                <div className={styles.heroSection}>
-                    <h1 className={styles.title}>Aleph Space</h1>
+                <div className={styles.heroSection} style={{marginBottom: '4rem', marginTop: 'auto'}}>
+                    <h1 className={styles.title}>
+                        Aleph
+                        <Image
+                            src="/sun.gif"
+                            alt="Sun of Aleph Space"
+                            width={75}
+                            height={75}
+                            style={{ display: 'inline', verticalAlign: 'middle', margin: '0 0.5rem' }}
+                        />
+                        Space
+                    </h1>
                     <p className={styles.subTitle}>Increasing universal wisdom</p>
-                    
                     <form className={styles.solutionSection} style={{maxWidth: '15rem'}} onSubmit={handleSubmit}>
                         <div className={styles.solutionFeatures}>
                             <div className={styles.feature} style={{border: 0}}>
@@ -109,6 +109,15 @@ const LoginPage: React.FC = () => {
                         Continua tu jornada con propósito
                     </p>
                 </div>
+                <Image 
+                    src="https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/soft-logo-white-reduced.png"
+                    className={styles.image}
+                    alt="Corner Logo"
+                    width={100}
+                    height={100}
+                    style={{width: '10rem', height: 'auto'}}
+                    priority
+                />
             </div>
         </>
     );

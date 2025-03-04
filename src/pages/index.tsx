@@ -2,13 +2,14 @@
 import styles from '@/styles/landing.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function LandingPage() {
 
   return (
     <>
       <Head>
-        <title>Aleph Space - Educación Eficiente</title>
+        <title>Educación Eficiente AS</title>
         <meta name="title" content="Aleph Space" />
         <meta name="keywords" content="Aleph Space, Educación eficiente, Aprendizaje eficiente, Aprendizaje personalizado, Educacion eficiente" />
         <meta name="description" content="Educación eficiente y personalizada elevando tu vida con simples clics: Increasing universal wisdom - Where eternity tends to converge" />
@@ -20,14 +21,35 @@ export default function LandingPage() {
         <meta property="twitter:title" content="Aleph Space" />
         <meta property="twitter:description" content="Educación eficiente y personalizada elevando tu vida con simples clics: Increasing universal wisdom - Where eternity tends to converge" />
       </Head>
+      <Image 
+        src="https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/soft-logo-white-reduced.png"
+        className={styles.fixedImage}
+        alt="Corner Logo"
+        width={100}
+        height={100}
+        style={{width: '2rem', height: 'auto', top: '1rem', right: '1rem'}}
+        priority
+      />
       
       <div className={styles.landingContainer}>
+
         <section className={styles.heroSection}>
+          <h1 className={styles.title}>
+            Aleph
+            <Image
+              src="/sun.gif"
+              alt="Sun of Aleph Space"
+              width={75}
+              height={75}
+              style={{ display: 'inline', verticalAlign: 'middle', margin: '0 0.5rem' }}
+            />
+            Space
+          </h1>
           <h1 className={styles.heroQuestion}>
-            ¿Con simples clics tu vida elevarías?
+            ¿Tu vida elevarías?
           </h1>
           <h2 className={styles.subHeroQuestion}>
-            ¿Y si ese poder estuviera en tus manos, pero aún no lo sabes?
+            Poderosa tu mente, hazla más eficiente
           </h2>
         </section>
 
@@ -35,15 +57,18 @@ export default function LandingPage() {
           <div className={styles.characterCard}>
             <h3 className={styles.gothicText}>Tú</h3>
             <p className={styles.calmText}>
-              Eres alguien que quiere más. <b>Más</b> para tu <b>familia</b>, más para tu <b>futuro</b>, más para el <b>mundo</b>. 
-              Pero a veces, el camino parece imposible sin aprendizaje eficiente.
+              Alguien buscando <b>más</b>.<br/>
+              Para tu <b>familia</b>, tu <b>futuro</b>, el <b>mundo</b>.<br/>
+              <b>Imposible</b> sin <b>eficiencia</b>.
             </p>
           </div>
 
           <div className={styles.characterCard}>
             <h3 className={styles.gothicText}>Nosotros</h3>
             <p className={styles.calmText}>
-              Liberaremos tu <b>potencial</b> garantizadamente ayudándote a crecer con <b>menos esfuerzo</b> convertiendo tus sueños en realidades tangibles si y solo si sigues nuestros <b>algoritmos verificados</b> de educación eficiente.
+              Garantizamos tu <b>potencial</b>.<br/>
+              Crecimiento <b>menos forzoso</b>.<br/>
+              Cumplen <b>algoritmos verificados</b>.
             </p>
           </div>
         </section>
@@ -52,24 +77,24 @@ export default function LandingPage() {
           <div className={styles.obstaclesList}>
             <div className={styles.obstacle}>
               <span className={styles.obstacleIcon}>⚠</span>
-              <p>¿<b>Frustración</b> por incapacidad de cumplir sueños?</p>
+              <p>¿<b>Frustración</b> por incapacidad?</p>
             </div>
             <div className={styles.obstacle}>
               <span className={styles.obstacleIcon}>⏳</span>
-              <p>El <b>tiempo</b> que parece nunca alcanzar</p>
+              <p>El <b>tiempo</b> nunca alcanza</p>
             </div>
             <div className={styles.obstacle}>
               <span className={styles.obstacleIcon}>❓</span>
-              <p>La <b>incertidumbre</b> que te paraliza</p>
+              <p>La <b>incertidumbre</b> paralizante</p>
             </div>
           </div>
         </section>
 
         <section className={styles.visionSection}>
           <p className={styles.visionText}>
-            Imagina tus pasos <b>impactando mejor</b> el presente y <b>a tí</b>. 
-            <b> Menos esfuerzo</b> impactando a quienes amas y al mundo entero.
-            Siguiendo caminos claros, <b>garantizados</b> placenteros con aprendizaje personalizado.
+            <b>Impactando mejor</b> tu presente.<br/>
+            Disfrutando <b>menos esfuerzo</b>.<br/>
+            Caminos gratificantemente <b>garantizados</b>.
           </p>
         </section>
 
@@ -78,27 +103,27 @@ export default function LandingPage() {
           <div className={styles.solutionFeatures}>
             <div className={styles.feature}>
               <span className={styles.featureIcon}>🎯</span>
-              <p>Descubre tu perfil psicológico</p>
+              <p>Con tu psicología</p>
             </div>
             <div className={styles.feature}>
               <span className={styles.featureIcon}>📊</span>
-              <p>Recibe material, resultados y feedback personalizados</p>
+              <p>Material, resultados y feedback <i>personalizados</i></p>
             </div>
             <div className={styles.feature}>
               <span className={styles.featureIcon}>✨</span>
-              <p>Transforma tu vida con métodos científicamente probados</p>
+              <p>Métodos eficaces garantizados</p>
             </div>
           </div>
         </section>
 
         <section className={styles.ctaSection}>
           <p className={styles.ctaText}>
-            No se trata solo de aprender. Se trata de crecer. De impactar. 
-            De encontrar el significado que siempre buscaste.
+            Aprende. Crece. Impacta. 
+            Tu significado verdadero.
           </p>
           <Link href="/register">
             <button className={styles.submitButton}>
-              Descubre tu potencial ahora
+              Descúbrete potencialmente ahora
             </button>
           </Link>
         </section>

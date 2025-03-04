@@ -1,4 +1,6 @@
 // frontend/src/pages/index.tsx
+import Head from 'next/head';
+import Image from 'next/image';
 import styles from '../styles/register.module.css';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -8,7 +10,6 @@ import AuthService from '../services/Auth';
 import { ErrorDisplay } from '../components/common/ErrorDisplay';
 import { UserProfile } from '@/models/interfaces';
 import { LoadingState } from '@/components/common/LoadingState';
-import Head from 'next/head';
 
 const InitialRegistration: React.FC = () => {
   const router = useRouter();
@@ -17,11 +18,11 @@ const InitialRegistration: React.FC = () => {
   const { setUserProfile, setPreviousState, currentPhase } = useUser();
   const [formData, setFormData] = useState<UserProfile>({
     id: '',
-    complete_name: 'aoisdfoiajsfoi',
-    preferred_name: 'adfpaosdkfpasodkf  ',
-    email: 'ittttti@gmail.com',
-    movil: '928472348975',
-    telegram: 'aosijdfoasijfd',
+    complete_name: '',
+    preferred_name: '  ',
+    email: '',
+    movil: '',
+    telegram: '',
     password: '',
   });
 
@@ -110,7 +111,7 @@ const InitialRegistration: React.FC = () => {
   return (
     <>  
       <Head>
-        <title>Registro - AS</title>
+        <title>Registro AS</title>
         <meta name="title" content="Aleph Space - Increasing universal wisdom" />
         <meta name="description" content="Where eternity tends to converge." />
         <meta property="og:type" content="website" />
@@ -121,18 +122,29 @@ const InitialRegistration: React.FC = () => {
         <meta property="twitter:title" content="Aleph Space - Increasing universal wisdom" />
         <meta property="twitter:description" content="Where eternity tends to converge." />
       </Head>
+      
       <div className={styles.registrationContainer}>
-        
         <div className={styles.welcomeSection}>
-          <h1 className={styles.title}>Aleph Space</h1>
+          <h1 className={styles.title}>
+            Aleph
+            <Image
+              src="/sun.gif"
+              alt="Sun of Aleph Space"
+              width={75}
+              height={75}
+              style={{ display: 'inline', verticalAlign: 'middle', margin: '0 0.5rem' }}
+            />
+            Space
+          </h1>
           <p className={styles.subTitle}>Increasing universal wisdom.</p>
         </div>
 
         <div className={styles.privacyNotice}>
           <h3 className={styles.privacyTitle} style={{textAlign: 'center'}}>Seguridad</h3>
-          <p className={styles.privacyText} style={{textAlign: 'right'}}>
-            Nuestra información es sagrada. La proteje la misma dedicación de nuestros antepasados guardando sus tesoros en criptas tecnológicamente
-            dentro del Aleph comunicadas mejorando tu experiencia humana.
+          <p className={styles.privacyText} style={{textAlign: 'center'}}>
+            Sagrada información nuestra.<br/>
+            Tesoros tecnológicamente comunicados.<br/>
+            Mejorando experiencias humanas.
           </p>
         </div>
 
@@ -223,8 +235,8 @@ const InitialRegistration: React.FC = () => {
 
         <div className={styles.formFooter}>
           <p className={styles.calmText}>
-            Toma tu tiempo para asegurar información válida.
-            Nuestra aventura comenzará.
+            Asegura información válida.<br/>
+            Nuestra aventura comenzará.<br/>
             Solo si llegas hasta el final.
           </p>
         </div>
