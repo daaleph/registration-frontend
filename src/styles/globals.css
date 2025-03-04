@@ -7,7 +7,7 @@
   --forth-color: rgb(135, 135, 135);
   --text-primary-color: white;
   --text-secondary-color:black;
-  --border-color: rgb(255, 255, 0);
+  --border-color: rgba(255, 255, 0, 0.446);
   --error-color: #e74c3c;
 }
 
