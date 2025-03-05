@@ -90,7 +90,6 @@ export class ProfileService extends QuestionService {
     constructor() {
         super('profile', true);
     }
-    
 }
 
 export class BfiService extends QuestionService {
