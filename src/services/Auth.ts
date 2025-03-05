@@ -97,13 +97,14 @@ export default class AuthService {
         return computedSignature === signature;
     }
 
-    decodeJwt(token: string): any {
+    decodeJwt(token: string): { email: string } {
         const parts = token.split('.');
         if (parts.length !== 3) throw new Error("Invalid token structure");
         const base64UrlPayload = parts[1];
         const base64Payload = base64UrlPayload.replace(/-/g, '+').replace(/_/g, '/');
         const decoded = Buffer.from(base64Payload, 'base64').toString('utf-8');
-        return JSON.parse(decoded);
+        const { email } = JSON.parse(decoded);
+        return email;
     }
   
     async createProfile<T>(data: UserProfile): Promise<T> {
