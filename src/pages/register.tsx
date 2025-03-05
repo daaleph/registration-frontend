@@ -79,10 +79,7 @@ const InitialRegistration: React.FC = () => {
       setIsLoading(true);
       const profileInfo = await authService.profileExists<UserProfile>(formData.email);
       if (profileInfo) {
-        const newProfile = {
-          ...formData,
-          id: profileInfo.id
-        };
+        const newProfile = {...formData, id: profileInfo.id };
         if (profileInfo.password) {
           router.push('/login', undefined, { shallow: true });
           return;
@@ -138,7 +135,7 @@ const InitialRegistration: React.FC = () => {
           <h3 className={styles.privacyTitle} style={{textAlign: 'center'}}>Seguridad</h3>
           <p className={styles.privacyText} style={{textAlign: 'center'}}>
             Sagrada información nuestra.<br/>
-            Tesoros tecnológicamente comunicados.<br/>
+            Tesoros tecnológicamente comunicados<br/>
             Mejorando experiencias humanas.
           </p>
         </div>
