@@ -11,6 +11,7 @@ import styles from '../styles/register.module.css';
 import React, { useEffect, useState } from 'react';
 import { ErrorDisplay } from '../components/common/ErrorDisplay';
 import { LoadingState } from '@/components/common/LoadingState';
+import FixedLogo from '@/components/common/FixedLogo';
 
 const InitialRegistration: React.FC = () => {
   const router = useRouter();
@@ -125,14 +126,7 @@ const InitialRegistration: React.FC = () => {
         <meta property="twitter:description" content="Where eternity tends to converge." />
       </Head>
 
-      <Image 
-        src="https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/soft-logo-white-reduced.png"
-        className={styles.fixedImage}
-        alt="Corner Logo"
-        width={100}
-        height={100}
-        priority
-      />
+      <FixedLogo/>
       
       <div className={styles.registrationContainer}>
         <div className={styles.welcomeSection}>
