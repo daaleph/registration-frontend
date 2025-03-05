@@ -10,6 +10,7 @@ export const useAuth = () => {
 
   const login = async (email: string, password: string) => {
     const { accessToken } = await auth.login<AccessToken>(email, password);
+    auth.validateAuthToken(email, accessToken);
     setAuthToken(accessToken);
   };
 

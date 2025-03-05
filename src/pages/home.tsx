@@ -5,7 +5,7 @@ import { useUser } from '@/contexts/User';
 import AuthGuard from '@/components/guards/Auth';
 import styles from '@/styles/home.module.css';
 import Head from 'next/head';
-import Image from 'next/image';
+import FixedLogo from '@/components/common/FixedLogo';
 
 const HomePage: React.FC = () => {
     const { logout } = useAuth();
@@ -13,16 +13,10 @@ const HomePage: React.FC = () => {
 
     return (
         <AuthGuard>
-            <Head><title>Home - AS</title></Head>
-            <Image 
-                src="https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/soft-logo-white-reduced.png"
-                className={styles.fixedImage}
-                alt="Corner Logo"
-                width={100}
-                height={100}
-                style={{width: '2rem', height: 'auto', top: '1rem', right: '1rem'}}
-                priority
-            />
+            <Head><title>Inicio AS</title></Head>
+
+            <FixedLogo/>
+            
             <div className={styles.homeContainer}>
                 <section className={styles.welcomeSection}>
                     <h1 className={styles.title}>

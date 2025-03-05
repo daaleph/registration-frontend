@@ -1,6 +1,5 @@
 // frontend/src/pages/index.tsx
 import Head from 'next/head';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useUser } from '../contexts/User';
 import { useCSRF } from '@/hooks/useCSRFToken';
@@ -11,6 +10,8 @@ import styles from '../styles/register.module.css';
 import React, { useEffect, useState } from 'react';
 import { ErrorDisplay } from '../components/common/ErrorDisplay';
 import { LoadingState } from '@/components/common/LoadingState';
+import FixedLogo from '@/components/common/FixedLogo';
+import Title from '@/components/common/Title';
 
 const InitialRegistration: React.FC = () => {
   const router = useRouter();
@@ -125,28 +126,11 @@ const InitialRegistration: React.FC = () => {
         <meta property="twitter:description" content="Where eternity tends to converge." />
       </Head>
 
-      <Image 
-        src="https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/soft-logo-white-reduced.png"
-        className={styles.fixedImage}
-        alt="Corner Logo"
-        width={100}
-        height={100}
-        priority
-      />
+      <FixedLogo/>
       
       <div className={styles.registrationContainer}>
         <div className={styles.welcomeSection}>
-          <h1 className={styles.title}>
-            Aleph
-            <Image
-              src="/sun.gif"
-              alt="Sun of Aleph Space"
-              width={75}
-              height={75}
-              style={{ display: 'inline', verticalAlign: 'middle', margin: '0 0.5rem' }}
-            />
-            Space
-          </h1>
+          <Title/>
           <p className={styles.subTitle}>Increasing universal wisdom.</p>
         </div>
 

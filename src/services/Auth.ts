@@ -3,6 +3,10 @@ import { CsrfToken } from '@/types/security';
 import { HttpUtility } from './HttpUtility';
 import { setCsrfToken } from './axios.config';
 import { UserProfile } from '@/models/interfaces';
+import { createHmac } from 'crypto';
+import loadEnv from '../../env.config';
+
+loadEnv();
 
 export default class AuthService {
     private baseUrl: string;
@@ -68,6 +72,38 @@ export default class AuthService {
                 password
             })
         );
+    }
+
+    validateAuthToken(
+        givenEmail: string,
+        token: string
+    ): void {
+        const parts = token.split('.');
+        if (parts.length !== 3) throw new Error('Invalid token structure');
+        if (!this.verifyJwt(parts)) throw new Error("Secrets don't match");
+        const { email } = this.decodeJwt(token);
+        if (email !== givenEmail) throw new Error("Token invalid");
+    }
+
+    verifyJwt(tokenParts: string[]): boolean {
+        const [headerEncoded, payloadEncoded, signature] = tokenParts;
+        const data = `${headerEncoded}.${payloadEncoded}`;
+        const computedSignature = createHmac('sha256', process.env.JWT_SECRET!)
+            .update(data)
+            .digest('base64')
+            .replace(/\+/g, '-')
+            .replace(/\//g, '_')
+            .replace(/=+$/, '');
+        return computedSignature === signature;
+    }
+
+    decodeJwt(token: string): any {
+        const parts = token.split('.');
+        if (parts.length !== 3) throw new Error("Invalid token structure");
+        const base64UrlPayload = parts[1];
+        const base64Payload = base64UrlPayload.replace(/-/g, '+').replace(/_/g, '/');
+        const decoded = Buffer.from(base64Payload, 'base64').toString('utf-8');
+        return JSON.parse(decoded);
     }
   
     async createProfile<T>(data: UserProfile): Promise<T> {

@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_NEST_URL: process.env.NEXT_PUBLIC_NEST_URL,
-    TOKEN: process.env.TOKEN
+    JWT_SECRET: process.env.JWT_SECRET
   },
   images: {
     remotePatterns: [
