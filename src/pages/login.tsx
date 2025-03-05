@@ -6,6 +6,7 @@ import { useAuth } from '@/hooks/useAuth';
 import router from 'next/router';
 import Head from 'next/head';
 import AuthService from '@/services/Auth';
+import Title from '@/components/common/Title';
 
 const LoginPage: React.FC = () => {
     const { login } = useAuth();
@@ -58,17 +59,7 @@ const LoginPage: React.FC = () => {
             </Head>
             <div className={styles.landingContainer}>
                 <div className={styles.heroSection} style={{ margin: 'auto', justifyContent: 'center', alignItems: 'center' }}>
-                    <h1 className={styles.title}>
-                        Aleph
-                        <Image
-                            src="/sun.gif"
-                            alt="Sun of Aleph Space"
-                            width={75}
-                            height={75}
-                            style={{ display: 'inline', verticalAlign: 'middle' }}
-                        />
-                        Space
-                    </h1>
+                    <Title/>
                     <p className={styles.subTitle}>Increasing universal wisdom</p>
                     <form className={styles.solutionSection} style={{maxWidth: '15rem'}} onSubmit={handleSubmit}>
                         <div className={styles.solutionFeatures}>

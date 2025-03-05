@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
 
     return (
         <AuthGuard>
-            <Head><title>Home - AS</title></Head>
+            <Head><title>Inicio AS</title></Head>
 
             <FixedLogo/>
             

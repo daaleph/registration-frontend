@@ -2,8 +2,8 @@
 import styles from '@/styles/landing.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import FixedLogo from '@/components/common/FixedLogo';
+import Title from '@/components/common/Title';
 
 export default function LandingPage() {
 
@@ -22,22 +22,12 @@ export default function LandingPage() {
         <meta property="twitter:title" content="Aleph Space" />
         <meta property="twitter:description" content="Educación eficiente y personalizada elevando tu vida con simples clics: Increasing universal wisdom - Where eternity tends to converge" />
       </Head>
-      
+
       <FixedLogo/>
       
       <div className={styles.landingContainer}>
         <section className={styles.heroSection}>
-          <h1 className={styles.title}>
-            Aleph
-            <Image
-              src="/sun.gif"
-              alt="Sun of Aleph Space"
-              width={75}
-              height={75}
-              style={{ display: 'inline', verticalAlign: 'middle', margin: '0 0.5rem' }}
-            />
-            Space
-          </h1>
+          <Title/>
           <h1 className={styles.heroQuestion}>
             ¿Tu vida elevarías?
           </h1>
