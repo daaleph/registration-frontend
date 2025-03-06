@@ -7,13 +7,13 @@ interface HooksDictionary {
 const hooks: HooksDictionary = {
   "estudiar": [
     "Nos dijeron: 'Estudia. Estudia más. Estudia otra vez.' Nos lo dijeron durante años, pero el caos sigue ahí.",
-"¿Y si te dijera que hay solución para este problema?",
-"Imagina convertir la confusión en un trampolín hacia el autodominio. Nuestro enfoque con IA transforma esa energía en ventaja usando repetición espaciada y estímulos psicológicos."
+    "¿Y si te dijera que hay solución para este problema?",
+    "Imagina convertir la confusión en un trampolín hacia el autodominio. Nuestro enfoque con IA transforma esa energía en ventaja usando repetición espaciada y estímulos psicológicos."
   ],
   "resaltar": [
     "¿Acaso tú resaltas, subrayas, resaltas, subrayas… y olvidas?",
-"Considera modificar esto.",
-"Tu mente te ha engañado por años, pero nuestro sistema de repetición espaciada con IA te invita a dejar el subrayado y activar tu retención. El resultado: claridad y una sed de conocimiento que transformará tu vida."
+    "Considera modificar esto.",
+    "Tu mente te ha engañado por años, pero nuestro sistema de repetición espaciada con IA te invita a dejar el subrayado y activar tu retención. El resultado: claridad y una sed de conocimiento que transformará tu vida."
   ],
   "memorizar": [
     "Reflexiona, ¿has estado memorizando a toda prisa en el corto plazo y luego olvidando?",
