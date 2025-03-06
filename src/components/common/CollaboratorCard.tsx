@@ -31,6 +31,7 @@ const CollaboratorCard = (collab: Collaborator) => {
                                 width={100}
                                 height={100}
                                 style={{ width: '1.1rem', height: 'auto'}}
+                                unoptimized
                                 priority
                             />
                         </Link>

@@ -5,13 +5,11 @@ import { QuestionWithOptions } from "@/models/interfaces";
 import { Phases } from "@/types/states";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { LoadingState } from "./LoadingState";
-import { ErrorDisplay } from "./ErrorDisplay";
 import Head from "next/head";
-import { QuestionForm } from "./QuestionForm";
 import styles from '../../styles/components.module.css';
 import { QuestionService } from "@/services/Registration";
 import { ProgressIncrements } from "@/data/phases";
+import { ErrorDisplay, LoadingState, QuestionForm } from ".";
 
 interface QuestionPageProps {
   phase: Phases;

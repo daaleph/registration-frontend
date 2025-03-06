@@ -27,7 +27,7 @@ const collaborators: Collaborator[] = [
   {
     title: 'Fundador',
     name: 'Nicolás Córdoba',
-    role: 'Visión y estrategia',
+    role: 'Visión estratégica',
     studies: 'Científico Computacional & Geodesta',
     photo: `${basePeopleURl}NICOLAS-min${p}`,
     socialLinks: [
