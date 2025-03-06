@@ -4,7 +4,7 @@ import Image from 'next/image';
 import router from 'next/router';
 import { useAuth } from '@/hooks/useAuth';
 import AuthService from '@/services/Auth';
-import { Container, Title } from '@/components/common';
+import { GridedContainer, Title } from '@/components/common';
 import styles from '@/styles/landing.module.css';
 import React, { useEffect, useState } from 'react';
 
@@ -44,7 +44,7 @@ const LoginPage: React.FC = () => {
     };
 
     return (
-        <Container>
+        <GridedContainer>
             <Head>
                 <title>Entrar AS</title>
                 <meta name="title" content="Aleph Space - Login" />
@@ -112,7 +112,7 @@ const LoginPage: React.FC = () => {
                     priority
                 />
             </div>
-        </Container>
+        </GridedContainer>
     );
 };
 

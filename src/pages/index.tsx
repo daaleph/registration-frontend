@@ -1,5 +1,5 @@
 // frontend/src/pages/index.tsx
-import { Container, FixedLogo, Subtitle, Title } from '@/components/common';
+import { GridedContainer, FixedLogo, Subtitle, Title } from '@/components/common';
 import styles from '@/styles/landing.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function LandingPage() {
 
   return (
-    <Container>
+    <GridedContainer>
 
       <Head>
         <title>Educación Eficiente AS</title>
@@ -98,7 +98,7 @@ export default function LandingPage() {
 
       <section className={styles.ctaSection}>
         <p className={styles.ctaText}>
-          Aprende. Crece. Impacta. 
+          Aprende. Crece. Impacta.<br/>
           Tu significado verdadero.
         </p>
         <Link href="/register">
@@ -108,6 +108,6 @@ export default function LandingPage() {
         </Link>
       </section>
 
-    </Container>
+    </GridedContainer>
   );
 }

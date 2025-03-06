@@ -10,4 +10,4 @@ export { default as QuestionPage } from './QuestionPage';
 export { default as StudyCard } from './StudyCard';
 export { default as Subtitle } from './Subtitle';
 export { default as Title } from './Title'
-export { default as Container } from './Container';
+export { default as GridedContainer } from './GridedContainer';

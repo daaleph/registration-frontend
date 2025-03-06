@@ -1,9 +1,9 @@
 /* frontend/src/styles/landing.module.css */
 
 /* Layout Containers */
-.container {
+.gridedContainer {
+  padding: 3rem;
   min-width: 80%;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -15,7 +15,7 @@
   position: relative;
 }
 
-.container::after {
+.gridedContainer::after {
   content: '';
   position: fixed;
   left: 10%;
@@ -56,7 +56,7 @@
   margin: 1rem;
 }
 .subHeroQuestion {
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-smaller);
   color: var(--forth-color);
 }
 .visionText {
@@ -95,13 +95,22 @@
 }
 
 .solutionSection,
-.ctaSection {
+.ctaSection,
+.validationSection {
+  align-items: flex-end;
   display: grid;
   grid-template-rows: 1fr;
-  margin: auto auto 3rem;
+  margin: 5rem auto;
   width: auto;
-  max-width: 80%;
-  text-align: center;
+  max-width: 60%;
+  text-align: right;
+}
+
+.ctaText {
+  text-align: left;
+  margin-bottom: 1rem;
+  font-size: var(--font-size-smaller);
+  color: var(--third-color);
 }
 
 .obstaclesSection,
@@ -126,6 +135,14 @@
 .characterCard {
   background: rgba(255, 255, 0, 0.02);
 }
+
+.collaboratorCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
 .obstacle {
   display: flex;
   justify-content: flex-end;
@@ -139,13 +156,13 @@
   font-size: 1.5rem;
 }
 .feature {
+  width: fit-content;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   padding: 0.5rem;
 }
 .feature p {
-  font-family: var(--mono-font); /* 'IBM Plex Mono', monospace */
+  font-family: var(--mono-font);
   margin: 0;
   flex: 1;
 }
@@ -157,9 +174,10 @@
 /* Lists */
 .obstaclesList,
 .solutionFeatures {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
 }
 
 .obstaclesList {
@@ -187,9 +205,10 @@
 .formGroup label {
   font-family: 'Merryweather', sans-serif;
 }
+
 .formGroup input {
-  font-family: var(--mono-font); /* 'IBM Plex Mono', monospace */
-  font-size: var(--font-size-small); /* 1rem */
+  font-family: var(--mono-font);
+  font-size: var(--font-size-small);
   width: 100%;
   padding: 0.8rem;
   border: 1px solid var(--secondary-color);
@@ -205,8 +224,7 @@
 }
 
 .submitButton {
-  margin-top: 2rem;
-  padding: 1.2rem;
+  padding: 1rem;
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-primary-color);
@@ -232,35 +250,35 @@
 }
 
 /* Images */
-.image,
-.fixedLogo {
+.image, .fixedLogo, .logo {
   transition: transform 0.3s ease;
   z-index: 1000;
 }
 
 .image {
   width: 7rem;
-  margin: 10rem auto;
+  margin: 1rem auto 1rem auto;
   display: block;
+}
+.logo, .fixedLogo {
+  width: 1.2rem;
 }
 .fixedLogo {
   position: fixed;
   top: 1rem;
   right: 20px;
-  width: 1.2rem;
 }
-.image:hover,
-.fixedLogo:hover {
+.image:hover, .fixedLogo:hover {
   transform: scale(1.1);
 }
 
 /* Media Queries */
 @media (aspect-ratio > 1) {
-  .container {
+  .gridedContainer {
     grid-template-columns: 1fr 1fr;
   }
   .characterSection {
-    margin: 13rem 3rem 0 0;
+    margin: 13rem 0 0 0;
     height: fit-content;
   }
   .calmText {
@@ -288,4 +306,66 @@
   50% {
     text-shadow: 0 0 20px rgba(255, 255, 0, 0.2);
   }
+}
+
+/* Study Card Component Styles */
+.studyCard {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: var(--background);
+  transition: transform 0.3s ease;
+  margin: 1rem auto;  
+  max-width: calc(300px + 200px);
+}
+
+.studyCard:hover {
+  transform: translateY(-2px);
+}
+
+.studyContent {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.authorWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 100%;
+}
+
+.authors {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 200px;
+}
+
+.authors p {
+  margin: 0;
+  font-family: var(--mono-font);
+  font-size: var(--font-size-small);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.studyThumbnailWrapper {
+  flex-shrink: 0;
+}
+
+.studyThumbnail {
+  display: block;
+  border-radius: var(--border-radius);
+}
+
+.studyReason {
+  margin-top: 1rem;
+  font-family: var(--mono-font);
+  font-size: var(--font-size-smaller);
+  text-align: left;
+  color: var(--text-primary-color);
 }

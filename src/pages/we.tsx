@@ -4,12 +4,12 @@ import studies from '@/data/studies';
 import Title from '@/components/common/Title';
 import collaborators from '@/data/collaborators';
 import styles from '@/styles/landing.module.css';
-import { CollaboratorCard, Container, FixedLogo, StudyCard, Subtitle } from '@/components/common';
+import { CollaboratorCard, GridedContainer, FixedLogo, StudyCard, Subtitle } from '@/components/common';
 
 export default function LandingPage() {
 
     return (
-        <Container>
+        <GridedContainer>
             <Head>
                 <title>Nosotros AS</title>
                 <meta name="title" content="Aleph ✴ Space" />
@@ -26,21 +26,23 @@ export default function LandingPage() {
 
             <FixedLogo/>
 
-            <Title word1="¿Por qué" word2='nosotros?' />
+            <section className={styles.heroSection}>
+                <Title word1="¿Por qué" word2='nosotros?' />
+            </section>
 
-            <section className={styles.characterSection}>
-                <Subtitle text="El Team AS" />
+            <section className={styles.characterSection} style={{marginBottom: '6rem'}}>
+                <Subtitle text="Team Aleph Space" />
                 {collaborators.map((collaborator, index) => (
                     <CollaboratorCard key={index} {...collaborator} />
                 ))}
             </section>
+            
+            <Subtitle text="Comenzamos por esto"/>
+            
+            { studies.map((study, index) => (
+                <StudyCard key={index} {...study} />
+            ))}
 
-            <section className={styles.validationSection}>
-                <Subtitle text="Comenzamos por esto" />
-                {studies.map((study, index) => (
-                    <StudyCard key={index} {...study} />
-                ))}
-            </section>
-        </Container>
+        </GridedContainer>
     );
 }
