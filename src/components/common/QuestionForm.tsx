@@ -18,7 +18,7 @@ interface QuestionFormProps {
   isLoading?: boolean;
 }
 
-export const QuestionForm: React.FC<QuestionFormProps> = ({
+const QuestionForm: React.FC<QuestionFormProps> = ({
   hook,
   showDescription,
   setShowDescription,
@@ -165,6 +165,8 @@ export const QuestionForm: React.FC<QuestionFormProps> = ({
   );
 
 };
+
+export default QuestionForm;
 
 const calculateFibonacciWeights = (length: number): number[] => {
   const weights: number[] = [1, 1];

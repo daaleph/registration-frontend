@@ -8,7 +8,7 @@ interface PhaseNavigationProps {
     canGoForward: boolean;
 }
 
-export const PhaseNavigation: React.FC<PhaseNavigationProps> = ({
+const PhaseNavigation: React.FC<PhaseNavigationProps> = ({
     onPrevious,
     onNext,
     canGoBack,
@@ -33,3 +33,5 @@ export const PhaseNavigation: React.FC<PhaseNavigationProps> = ({
         </div>
     );
 };
+
+export default PhaseNavigation;

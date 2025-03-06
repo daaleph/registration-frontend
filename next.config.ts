@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         hostname: 'pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev',
         pathname: '/CULTURE/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev',
+        pathname: '/MARKETING/**'
+      }
     ],
   }
 };

@@ -1,7 +1,7 @@
 // product.tsx
-import QuestionPage from '@/components/common/QuestionPage';
-import { ProductService } from '@/services/Registration';
 import CSRFGuard from '@/components/guards/CSRF';
+import { QuestionPage } from '@/components/common';
+import { ProductService } from '@/services/Registration';
 
 const ProductPage = () => {
     const service = ProductService.getInstance();

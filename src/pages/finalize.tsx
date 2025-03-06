@@ -6,6 +6,7 @@ import { useUser } from '@/contexts/User';
 import CSRFGuard from '@/components/guards/CSRF';
 import styles from '../styles/register.module.css';
 import landingStyles from '../styles/landing.module.css';
+import Title from '@/components/common/Title';
 
 const FinalizePage: React.FC = () => {
 
@@ -65,11 +66,11 @@ const FinalizePage: React.FC = () => {
 
   return (
     <CSRFGuard>
-      <Head><title>Sellar</title></Head>
-      <div className={styles.registrationContainer}>
+      <Head><title>Sellar AS</title></Head>
+      <div className={styles.container}>
         
-        <div className={styles.welcomeSection} style={{margin: '4rem 4rem 4rem 4rem'}}>
-          <h1 className={styles.title} style={{marginBottom:0}}>Casi Listo</h1>
+        <div className={styles.welcomeSection}>
+          <Title word1='Casi' word2='Listo' gifProvider='animatedicons.co'/>
           <p className={styles.subTitle }>
             Elige tu llave
           </p>

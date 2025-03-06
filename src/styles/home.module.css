@@ -16,11 +16,11 @@
 }
 
 .title {
-    font-size: 3rem;
+    font-size: var(--font-size-large); /* 3rem */
     font-weight: 600;
-    margin: 10rem 0 10rem;
+    margin: 10rem 0;
     line-height: 1.2;
-    font-family: 'Montserrat', Sans-Serif;
+    font-family: var(--primary-font); /* 'Montserrat', sans-serif */
     color: var(--secondary-color);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -28,9 +28,9 @@
 }
 
 .subTitle {
-    font-size: 2rem;
+    font-size: var(--font-size-medium); /* 2rem */
     font-weight: 100;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--secondary-font); /* 'Cormorant Garamond', serif */
     color: var(--forth-color);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -44,14 +44,14 @@
 .devCard {
     background: rgba(255, 255, 0, 0.02);
     border: 1px hidden var(--border-color);
-    border-radius: 12px;
-    font-family: 'IBM Mono Space', monospace;
+    border-radius: var(--border-radius); /* 8px */
+    font-family: var(--mono-font); /* 'IBM Plex Mono', monospace */
     padding: 2rem;
     animation: slideUp 1s ease-out;
 }
 
 .devHeader {
-    font-family: 'Montserrat', Sans-Serif;
+    font-family: var(--primary-font); /* 'Montserrat', sans-serif */
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -124,13 +124,13 @@
     background: transparent;
     border: 1px solid var(--border-color);
     color: var(--text-primary-color);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
+    font-family: var(--secondary-font); /* 'Cormorant Garamond', serif */
+    font-size: var(--font-size-small); /* 1rem */
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 2px;
-    border-radius: 6px;
+    border-radius: var(--border-radius); /* 8px */
     align-self: center;
 }
 
