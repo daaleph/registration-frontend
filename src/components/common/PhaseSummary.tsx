@@ -6,7 +6,7 @@ interface PhaseSummaryProps {
     onContinue: () => void;
 }
 
-export const PhaseSummary: React.FC<PhaseSummaryProps> = ({ onContinue }) => {
+const PhaseSummary: React.FC<PhaseSummaryProps> = ({ onContinue }) => {
     const { currentPhase, responses } = useUser();
 
     const getPhaseTitle = () => {
@@ -35,3 +35,5 @@ export const PhaseSummary: React.FC<PhaseSummaryProps> = ({ onContinue }) => {
         </div>
     );
 };
+
+export default PhaseSummary;

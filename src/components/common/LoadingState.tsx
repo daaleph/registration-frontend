@@ -6,7 +6,7 @@ interface LoadingStateProps {
   message?: string;
 }
 
-export const LoadingState: React.FC<LoadingStateProps> = ({ 
+const LoadingState: React.FC<LoadingStateProps> = ({ 
   message = 'Loading...' 
 }) => {
   return (
@@ -16,3 +16,5 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
     </div>
   );
 };
+
+export default LoadingState;

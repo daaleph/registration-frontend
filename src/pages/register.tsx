@@ -8,10 +8,7 @@ import { getCsrfToken } from '../services/axios.config';
 import { UserProfile } from '@/models/interfaces';
 import styles from '../styles/register.module.css';
 import React, { useEffect, useState } from 'react';
-import { ErrorDisplay } from '../components/common/ErrorDisplay';
-import { LoadingState } from '@/components/common/LoadingState';
-import FixedLogo from '@/components/common/FixedLogo';
-import Title from '@/components/common/Title';
+import { ErrorDisplay, FixedLogo, LoadingState, Title } from '@/components/common';
 
 const InitialRegistration: React.FC = () => {
   const router = useRouter();
@@ -79,10 +76,7 @@ const InitialRegistration: React.FC = () => {
       setIsLoading(true);
       const profileInfo = await authService.profileExists<UserProfile>(formData.email);
       if (profileInfo) {
-        const newProfile = {
-          ...formData,
-          id: profileInfo.id
-        };
+        const newProfile = {...formData, id: profileInfo.id };
         if (profileInfo.password) {
           router.push('/login', undefined, { shallow: true });
           return;
@@ -128,9 +122,9 @@ const InitialRegistration: React.FC = () => {
 
       <FixedLogo/>
       
-      <div className={styles.registrationContainer}>
+      <div className={styles.container}>
         <div className={styles.welcomeSection}>
-          <Title/>
+          <Title gifProvider='animatedicons.co'/>
           <p className={styles.subTitle}>Increasing universal wisdom.</p>
         </div>
 
@@ -138,7 +132,7 @@ const InitialRegistration: React.FC = () => {
           <h3 className={styles.privacyTitle} style={{textAlign: 'center'}}>Seguridad</h3>
           <p className={styles.privacyText} style={{textAlign: 'center'}}>
             Sagrada información nuestra.<br/>
-            Tesoros tecnológicamente comunicados.<br/>
+            Tesoros tecnológicamente comunicados<br/>
             Mejorando experiencias humanas.
           </p>
         </div>

@@ -1,7 +1,7 @@
-// profile.tsx
-import QuestionPage from '@/components/common/QuestionPage';
-import { ProfileService } from '@/services/Registration';
+// /frontend/src/pages/profile.tsx
 import CSRFGuard from '@/components/guards/CSRF';
+import { ProfileService } from '@/services/Registration';
+import QuestionPage from '@/components/common/QuestionPage';
 
 const ProfilePage = () => {
   const service = ProfileService.getInstance();

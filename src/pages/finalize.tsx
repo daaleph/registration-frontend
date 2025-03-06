@@ -1,20 +1,21 @@
+import Head from 'next/head';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import AuthService from '@/services/Auth';
+import { useAuth } from '@/hooks/useAuth';
 import { useUser } from '@/contexts/User';
 import CSRFGuard from '@/components/guards/CSRF';
 import styles from '../styles/register.module.css';
 import landingStyles from '../styles/landing.module.css';
-import Head from 'next/head';
-import { AccessToken } from '@/types/security';
+import Title from '@/components/common/Title';
 
 const FinalizePage: React.FC = () => {
-  const { setAuthToken, userProfile } = useUser();
+
   const router = useRouter();
-  const authService = new AuthService();
+  const { finalizeRegistrationWithPassword } = useAuth();
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const { userProfile } = useUser();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [validationErrors, setValidationErrors] = useState({
     length: false,
     number: false,
@@ -52,8 +53,7 @@ const FinalizePage: React.FC = () => {
     try {
       if (!userProfile?.id) throw new Error('Profile ID not found');
       if (!password) throw new Error('Password is required');
-      const  { accessToken } = await authService.finalizeRegistrationWithPassword<AccessToken>(userProfile.email, password);
-      setAuthToken(accessToken);
+      await finalizeRegistrationWithPassword(userProfile.email, password);
       router.push('/home');
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message || 'An error occurred');
@@ -66,11 +66,11 @@ const FinalizePage: React.FC = () => {
 
   return (
     <CSRFGuard>
-      <Head><title>Sellar</title></Head>
-      <div className={styles.registrationContainer}>
+      <Head><title>Sellar AS</title></Head>
+      <div className={styles.container}>
         
-        <div className={styles.welcomeSection} style={{margin: '4rem 4rem 4rem 4rem'}}>
-          <h1 className={styles.title} style={{marginBottom:0}}>Casi Listo</h1>
+        <div className={styles.welcomeSection}>
+          <Title word1='Casi' word2='Listo' gifProvider='animatedicons.co'/>
           <p className={styles.subTitle }>
             Elige tu llave
           </p>

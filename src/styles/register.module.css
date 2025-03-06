@@ -1,22 +1,30 @@
 /* frontend/src/styles/register.module.css */
-.registrationContainer {
-  width: auto;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 2rem;
+.container,
+.registrationForm,
+.formWrapper,
+.formGroup {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background: var(--background);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 0 20px rgba(255, 255, 0, 0.1);
-  border-radius: 8px;
-  animation: fadeIn 1s ease-out;
+  width: 100%;
+  max-width: 80%;
   position: relative;
 }
 
-.registrationContainer:after {
+.container {
+  max-width: 100%;
+  min-height: 100vh;
+  padding: 5rem;
+  margin: 0 auto;
+  justify-content: center;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  animation: fadeIn 1s ease-out;
+}
+
+.container:after {
   content: '';
   position: fixed;
   left: 10%;
@@ -24,112 +32,98 @@
   width: 80%;
   height: 1px;
   background: var(--secondary-color);
-  box-shadow: 
-    0 0 5px var(--secondary-color),
-    0 0 10px var(--secondary-color),
-    0 0 15px var(--secondary-color);
+  box-shadow: 0 0 5px var(--secondary-color),
+              0 0 10px var(--secondary-color),
+              0 0 15px var(--secondary-color);
   animation: glowPulse 2s ease-in-out infinite;
   z-index: 1000;
 }
 
-.welcomeSection {
-  max-width: 600px;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.title {
-  font-size: 3rem;
-  font-weight: 600;
-  margin: 10rem 0 10rem;
-  line-height: 1.2;
-  font-family: 'Montserrat', Sans-Serif;
-  color: var(--secondary-color);
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.subTitle {
-  font-size: 2rem;
-  font-weight: 100;
-  font-family: 'Cormorant Garamond', serif;
+.title,
+.subTitle,
+.gothicText,
+.privacyTitle,
+.privacyText,
+.passwordRequirements,
+.errorDisplay,
+.submitButton,
+.formFooter,
+.calmText,
+.formGroup input:focus {
+  font-family: var(--primary-font);
   color: var(--forth-color);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.title {
+  font-size: var(--font-size-large); /* 5rem */
+  font-weight: 600;
+  margin: 10rem 0;
+  line-height: 1.2;
+  color: var(--secondary-color);
+}
+
+.subTitle,
+.gothicText {
+  font-size: var(--font-size-medium);
+  font-weight: 100;
 }
 
 .gothicText {
   margin: 1.5rem 0;
-  font-weight: 100;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  color: var(--forth-color);
+  letter-spacing: 2px;
+  animation: glowPulse 3s infinite ease-in-out;
 }
 
-.privacyNotice {
+.welcomeSection {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.privacyNotice,
+.errorDisplay {
   margin: 2rem 0;
   padding: 1rem;
   max-width: 600px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
+  border-radius: var(--border-radius);
 }
 
-.privacyTitle {
-  padding-bottom: 1rem;
-  font-family: 'Montserrat', sans-serif;
-  color: var(--text-primary-color);
-  font-size: 1.2rem;
-}
-
-.privacyText {
-  color: var(--forth-color);
-  font-family: 'IBM Mono Space', monospace;
+.privacyTitle,
+.privacyText,
+.passwordRequirements,
+.formGroup input {
+  font-family: var(--secondary-font);
   font-size: 0.9rem;
   line-height: 1.6;
+  background: transparent;
 }
 
-.registrationForm {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 600px;
-  position: relative;
-  
-}
-
-.formWrapper {
-  width: 100%;
-  margin: 4%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
+.privacyText,
+.formFooter,
+.formGroup input:focus {
+  font-family: var(--mono-font);
 }
 
 .formGroup {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   width: 100%;
-}
-
-.formGroup label {
-  font-family: 'Merryweather', sans-serif;
+  margin: 4%;
+  align-items: flex-start;
 }
 
 .formGroup input {
-  font-family: 'IBM Mono Space', monospace;
   width: 100%;
   padding: 0.8rem;
   border: 1px solid var(--secondary-color);
   border-radius: 4px;
-  background: transparent;
   color: var(--text-primary-color);
-  font-size: 1rem;
+}
+
+.formGroup label {
+  font-family: 'Merryweather', sans-serif;
 }
 
 .formGroup input:focus {
@@ -139,43 +133,24 @@
 }
 
 .buttonContainer {
-  display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 1rem;
-}
-
-.gothicText {
-  font-family: 'Cormorant Garamond', serif;
-  color: var(--forth-color);
-  letter-spacing: 2px;
-  animation: glowPulse 3s infinite ease-in-out;
-}
-
-.errorDisplay {
-  padding: 1rem;
-  margin: 1rem 0;
-  background: rgba(231, 76, 60, 0.1);
-  border: 1px solid rgba(231, 76, 60, 0.3);
-  color: var(--error-color);
-  font-family: 'Cinzel', serif;
-  text-align: center;
-  border-radius: 6px;
 }
 
 .submitButton {
   width: fit-content;
-  padding: 1.2rem;
+  padding: 1rem;
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-primary-color);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
+  font-family: var(--accent-font);
+  font-size: var(--font-size-small);
   font-weight: bolder;
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border-radius: 6px;
+  border-radius: var(--border-radius);
 }
 
 .submitButton:hover:not(:disabled) {
@@ -190,16 +165,13 @@
 }
 
 .formFooter {
-  font-size: 1rem;
-  font-family: 'IBM Mono Space', monospace;
+  font-size: var(--font-size-small);
+  text-align: left;
   margin-top: 1rem;
-  text-align: left;
-  text-align: left;
 }
 
 .calmText {
-  color: var(--forth-color);
-  font-size: 1rem;
+  font-size: var(--font-size-smaller);
   text-align: right;
 }
 
@@ -212,12 +184,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.passwordRequirements {
-  text-align: left;
-  margin: 1rem 0;
-  font-size: 0.9rem;
 }
 
 .passwordRequirements ul {
@@ -244,25 +210,29 @@
   color: #4CAF50;
 }
 
-.invalid {
-  color: #666;
-}
-
-.valid {
-  color: #4CAF50;
-}
-
 .fixedImage {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  right: 20px;
   width: 2rem;
   height: auto;
   z-index: 1000;
-  transition: transform 0.3s ease;
 }
 
+.invalid,
+.valid {
+  color: var(--text-primary-color);
+}
+
+.errorDisplay {
+  padding: 1rem;
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  font-family: 'Cinzel', serif;
+  text-align: center;
+}
+
+.submitButton:hover:not(:disabled),
 .fixedImage:hover {
-  transform: scale(1.1);
+  transition: all var(--transition-time) ease;
 }

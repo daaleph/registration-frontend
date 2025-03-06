@@ -1,20 +1,21 @@
 // frontend/src/pages/home.tsx
 import React from 'react';
+import Head from 'next/head';
 import { useAuth } from '@/hooks/useAuth';
 import { useUser } from '@/contexts/User';
 import AuthGuard from '@/components/guards/Auth';
 import styles from '@/styles/home.module.css';
-import Head from 'next/head';
-import FixedLogo from '@/components/common/FixedLogo';
+import { FixedLogo, Subtitle, Title } from '@/components/common';
 
 const HomePage: React.FC = () => {
+
     const { logout } = useAuth();
     const { userProfile } = useUser();
 
     return (
         <AuthGuard>
-            <Head><title>Inicio AS</title></Head>
 
+            <Head><title>Inicio AS</title></Head>
             <FixedLogo/>
             
             <div className={styles.homeContainer}>
@@ -22,9 +23,8 @@ const HomePage: React.FC = () => {
                     <h1 className={styles.title}>
                         Bienvenido, {userProfile?.preferred_name || 'Usuario'}!
                     </h1>
-                    <p className={styles.subTitle}>
-                        Has completado exitosamente el proceso de registro.
-                    </p>
+                    <Title />
+                    <Subtitle text='Has completado exitosamente el proceso de registro.'/>
                 </section>
 
                 <section className={styles.developmentSection}>

@@ -1,4 +1,5 @@
 :root {
+  /* Background and Colors */
   --background: #000000;
   --foreground: white;
   --primary-color: black;
@@ -6,9 +7,26 @@
   --third-color: rgba(255, 255, 255, 0.45);
   --forth-color: rgb(135, 135, 135);
   --text-primary-color: white;
-  --text-secondary-color:black;
+  --text-secondary-color: black;
   --border-color: rgba(255, 255, 0, 0.446);
   --error-color: #e74c3c;
+
+  /* Font Families */
+  --primary-font: 'Montserrat', sans-serif
+  --secondary-font: 'Cormorant Garamond', serif;
+  --mono-font: 'IBM Plex Mono', monospace;
+  --label-font: 'Merryweather', sans-serif;
+  --accent-font: 'Cinzel', serif;
+
+  /* Font Sizes */
+  --font-size-large: 5rem;
+  --font-size-medium: 3rem;
+  --font-size-small: 1.5rem;
+  --font-size-smaller: 1rem;
+
+  /* Border and Shadows */
+  --border-radius: 8px;
+  --box-shadow: 0 0 20px rgba(255, 255, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
