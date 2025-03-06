@@ -24,7 +24,15 @@ export const useAuth = () => {
   };
 
   const validateAuthToken = (email: string, accessToken: string): void => {
-    auth.validateAuthToken(email, accessToken);
+    try {
+      auth.validateAuthToken(email, accessToken);
+    } catch (error ) {
+      if (error instanceof Error) {
+        console.error(`Error Code: ${error}, Message: ${error.message}`);
+      } else {
+        console.error('An unknown error occurred:', error);
+      }
+    }
     setAuthToken(accessToken);
   }
 
