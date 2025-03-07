@@ -310,13 +310,14 @@
 
 /* Study Card Component Styles */
 .studyCard {
+  height: fit-content;
+  width: auto;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   overflow: hidden;
   background: var(--background);
   transition: transform 0.3s ease;
-  margin: 1rem auto;  
-  max-width: calc(300px + 200px);
+  margin: 3rem 4rem 3rem 3rem;
 }
 
 .studyCard:hover {
@@ -358,6 +359,8 @@
 }
 
 .studyThumbnail {
+  height: 100%;
+  width: auto;
   display: block;
   border-radius: var(--border-radius);
 }
