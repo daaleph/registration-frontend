@@ -2,17 +2,17 @@
 
 /* Layout Containers */
 .gridedContainer {
-  padding: 2rem;
-  min-width: 80%;
-  display: grid;
-  grid-template-columns: 1fr;
   gap: 1rem;
+  padding: 2rem;
+  display: grid;
+  min-width: 80%;
+  position: relative;
+  grid-template-columns: 1fr;
+  animation: fadeIn 1s ease-out;
   background: var(--background);
   border: 1px solid var(--border-color);
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.419);
   border-radius: var(--border-radius);
-  animation: fadeIn 1s ease-out;
-  position: relative;
 }
 
 .gridedContainer::after {
@@ -386,11 +386,11 @@
 }
 
 .link {
-  color: var(--text-primary-color);
   text-decoration: none;
-  font-family: var(--mono-font);
-  font-size: var(--font-size-small);
   transition: color 0.3s ease;
+  font-family: var(--mono-font);
+  color: var(--text-primary-color);
+  font-size: var(--font-size-smaller);
 }
 
 .link:hover {
