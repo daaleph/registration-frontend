@@ -16,16 +16,16 @@ const LoginPage: React.FC = () => {
 
     const authService = AuthService.getInstance();
 
-    // useEffect(() => {
-    //     async function getInitialToken() {
-    //         try {
-    //             await authService.initialToken();
-    //         } catch (error) {
-    //             console.error('Failed to get CSRF token:', error);
-    //         }
-    //     }
-    //     getInitialToken();
-    // }, []);
+    useEffect(() => {
+        async function getInitialToken() {
+            try {
+                await authService.initialToken();
+            } catch (error) {
+                console.error('Failed to get CSRF token:', error);
+            }
+        }
+        getInitialToken();
+    }, []);
   
 
     const handleSubmit = async (e: React.FormEvent) => {
