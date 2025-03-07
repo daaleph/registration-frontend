@@ -65,8 +65,7 @@ const FinalizePage: React.FC = () => {
   };
 
   return (
-    // <CSRFGuard>
-    <>
+    <CSRFGuard>
       <Head><title>Sellar AS</title></Head>
       <div className={styles.container}>
         
@@ -160,8 +159,7 @@ const FinalizePage: React.FC = () => {
           </form>
         </div>
       </div>
-    </>
-    // </CSRFGuard>
+    </CSRFGuard>
   );
 };
 
