@@ -21,6 +21,7 @@ const CollaboratorCard = (collab: Collaborator) => {
                         alt={`${collab.name}'s photo`}
                         width={100}
                         height={100}
+                        style={{width: '100%', height: 'auto'}}
                     />
                     {collab.socialLinks.map((link, index) => (
                         <Link key={index} href={link.url} target="_blank" className={styles.socialIcon}>

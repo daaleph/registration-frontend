@@ -9,7 +9,7 @@ const FixedLogo = () => {
       alt='Fixed Logo for corners'
       width={100}
       height={100}
-      style={{ width: '1.1rem', height: 'auto', top: '1rem', right: '1rem'}}
+      style={{ width: '1.1rem', height: 'auto', top: '1.5rem', left: '3.8rem'}}
       priority
     />
   );

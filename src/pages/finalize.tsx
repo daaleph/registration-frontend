@@ -99,7 +99,7 @@ const FinalizePage: React.FC = () => {
                   textAlign: 'center'
                 }}
               />
-              <div className={landingStyles.solutionFeatures}>
+              <div className={landingStyles.solutionFeatures} style={{alignItems: 'center'}}>
                 <p style={{
                   color: 'var(--forth-color)',
                   marginBottom: '1rem',

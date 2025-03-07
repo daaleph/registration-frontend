@@ -1,8 +1,8 @@
 // frontend/src/pages/index.tsx
-import { GridedContainer, FixedLogo, Subtitle, Title } from '@/components/common';
-import styles from '@/styles/landing.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
+import styles from '@/styles/landing.module.css';
+import { GridedContainer, FixedLogo, Subtitle, Title } from '@/components/common';
 
 export default function LandingPage() {
 
@@ -27,9 +27,10 @@ export default function LandingPage() {
 
       <section className={styles.heroSection}>
         <Title gifProvider='animatedicons.co'/>
-        <Subtitle text='¿Tu vida elevarías?'/>
+        <Subtitle text='Creatividad menos forzosa'/>
         <h2 className={styles.heroQuestion}>
-          Poderosa tu mente, hazla más eficiente
+          Poderosa tu mente, hazla más eficiente<br/>
+          <i>¿Tu vida elevarías?</i>
         </h2>
       </section>
 
@@ -82,16 +83,16 @@ export default function LandingPage() {
         <h3 className={styles.calmText}>Simplifica el proceso</h3>
         <div className={styles.solutionFeatures}>
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>🎯</span>
             <p>Con tu psicología</p>
+            <span className={styles.featureIcon}>🎯</span>
           </div>
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>📊</span>
             <p>Material, resultados y feedback <i>personalizados</i></p>
+            <span className={styles.featureIcon}>📊</span>
           </div>
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>✨</span>
             <p>Métodos eficaces garantizados</p>
+            <span className={styles.featureIcon}>✨</span>
           </div>
         </div>
       </section>
@@ -103,7 +104,7 @@ export default function LandingPage() {
         </p>
         <Link href="/register">
           <button className={styles.submitButton}>
-            Descúbrete potencialmente ahora
+            Descúbrete
           </button>
         </Link>
       </section>

@@ -81,26 +81,22 @@ export default class AuthService {
         const parts = token.split('.');
         if (parts.length !== 3) throw new Error('Invalid token structure');
         if (!this.verifyJwt(parts)) throw new Error("Secrets don't match");
-        const { email } = this.decodeJwt(token);
+        const { email } = this.decodeJwt(parts[1]);
         if (email !== givenEmail) throw new Error("Token invalid");
     }
 
     verifyJwt(tokenParts: string[]): boolean {
         const [headerEncoded, payloadEncoded, signature] = tokenParts;
         const data = `${headerEncoded}.${payloadEncoded}`;
-        const computedSignature = createHmac('sha256', process.env.JWT_SECRET!)
+        return signature === createHmac('sha256', process.env.JWT_SECRET!)
             .update(data)
             .digest('base64')
             .replace(/\+/g, '-')
             .replace(/\//g, '_')
             .replace(/=+$/, '');
-        return computedSignature === signature;
     }
 
-    decodeJwt(token: string): { sub: string, email: string, iat: string, exp: string} {
-        const parts = token.split('.');
-        if (parts.length !== 3) throw new Error("Invalid token structure");
-        const base64UrlPayload = parts[1];
+    decodeJwt(base64UrlPayload: string): { sub: string, email: string, iat: string, exp: string} {
         const base64Payload = base64UrlPayload.replace(/-/g, '+').replace(/_/g, '/');
         const decoded = Buffer.from(base64Payload, 'base64').toString('utf-8');
         return JSON.parse(decoded);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Image from 'next/image';
 import styles from '../../styles/landing.module.css';
 
@@ -19,7 +19,7 @@ const Title = ({
 }: TitleProps) => {
   return (
     <h1 className={styles.title}>
-      {word1}
+      <span>{word1}</span>
       <Image
         src={`https://pub-dbd642a535de4512bfae0a5fd40ab343.r2.dev/CULTURE/${gif}`}
         alt={`An ${gifProvider}'s ${altGif} gif`}
@@ -29,7 +29,7 @@ const Title = ({
         loading="eager"
         unoptimized
       />
-      {word2}
+      <span>{word2}</span>
     </h1>
   );
 };

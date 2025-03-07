@@ -10,6 +10,7 @@ export default function LandingPage() {
 
     return (
         <GridedContainer>
+            
             <Head>
                 <title>Nosotros AS</title>
                 <meta name="title" content="Aleph ✴ Space" />
@@ -27,17 +28,26 @@ export default function LandingPage() {
             <FixedLogo/>
 
             <section className={styles.heroSection}>
-                <Title word1="¿Por qué" word2='nosotros?' />
+                <Title word1="Somos" word2='Legión' />
+                <Subtitle text='¿Tu vida elevarías?'/>
+                <h2 className={styles.heroQuestion}>
+                    Nuestra historia contándose
+                </h2>
             </section>
 
-            <section className={styles.characterSection} style={{marginBottom: '6rem'}}>
+            <section className={styles.characterSection}>
                 <Subtitle text="Team Aleph Space" />
                 {collaborators.map((collaborator, index) => (
                     <CollaboratorCard key={index} {...collaborator} />
                 ))}
             </section>
             
-            <Subtitle text="Comenzamos por esto"/>
+            <div>
+                <Subtitle text="Comenzamos por esto"/>
+                <h2 className={styles.heroQuestion}>
+                    Estudiando como locos
+                </h2>
+            </div>
             
             { studies.map((study, index) => (
                 <StudyCard key={index} {...study} />
