@@ -2,7 +2,7 @@
 
 /* Layout Containers */
 .gridedContainer {
-  padding: 3rem;
+  padding: 2rem;
   min-width: 80%;
   display: grid;
   grid-template-columns: 1fr;
@@ -82,28 +82,29 @@
 /* Sections */
 .heroSection,
 .characterSection {
-  width: calc(100% - 4rem);
-  margin: 12rem auto;
+  width: calc(100% - 1rem);
+  margin: 12rem auto 5rem;
   text-align: center;
 }
 
 .characterSection {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  display: grid;
   text-align: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .solutionSection,
 .ctaSection,
 .validationSection {
-  align-items: flex-end;
-  display: grid;
-  grid-template-rows: 1fr;
-  margin: 5rem auto;
   width: auto;
-  max-width: 60%;
+  display: grid;
+  max-width: 80%;
+  margin: 5rem 2rem;
   text-align: right;
+  justify-items: right;
+  align-items: flex-end;
+  grid-template-rows: 1fr;
 }
 
 .ctaText {
@@ -115,12 +116,12 @@
 
 .obstaclesSection,
 .visionSection {
+  padding: 2rem;
+  max-width: 80%;
   margin: 5rem auto;
   height: fit-content;
-  max-width: 80%;
-  padding: 2rem;
-  background: rgba(255, 255, 0, 0.03);
   border-radius: var(--border-radius);
+  background: rgba(255, 255, 0, 0.03);
 }
 
 /* Components */
@@ -133,6 +134,7 @@
 }
 
 .characterCard {
+  height: fit-content;
   background: rgba(255, 255, 0, 0.02);
 }
 
@@ -229,7 +231,7 @@
   border: 1px solid var(--border-color);
   color: var(--text-primary-color);
   font-family: var(--accent-font);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-smaller);
   font-weight: bolder;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -279,7 +281,6 @@
   }
   .characterSection {
     margin: 13rem 0 0 0;
-    height: fit-content;
   }
   .calmText {
     grid-column: 1 / -1;
@@ -310,14 +311,14 @@
 
 /* Study Card Component Styles */
 .studyCard {
-  height: fit-content;
   width: auto;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  margin: 1rem;
   overflow: hidden;
+  height: fit-content;
   background: var(--background);
   transition: transform 0.3s ease;
-  margin: 3rem 4rem 3rem 3rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
 }
 
 .studyCard:hover {

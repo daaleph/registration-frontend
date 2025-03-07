@@ -1,8 +1,8 @@
 // frontend/src/pages/index.tsx
-import { GridedContainer, FixedLogo, Subtitle, Title } from '@/components/common';
-import styles from '@/styles/landing.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
+import styles from '@/styles/landing.module.css';
+import { GridedContainer, FixedLogo, Subtitle, Title } from '@/components/common';
 
 export default function LandingPage() {
 
@@ -103,7 +103,7 @@ export default function LandingPage() {
         </p>
         <Link href="/register">
           <button className={styles.submitButton}>
-            Descúbrete potencialmente ahora
+            Descúbrete
           </button>
         </Link>
       </section>
