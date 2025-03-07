@@ -28,7 +28,7 @@ export default function LandingPage() {
             <FixedLogo/>
 
             <section className={styles.heroSection}>
-                <Title word1="Why" word2='us?' />
+                <Title word1="Somos" word2='Legión' />
                 <Subtitle text='¿Tu vida elevarías?'/>
                 <h2 className={styles.heroQuestion}>
                     Nuestra historia contándose

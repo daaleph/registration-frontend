@@ -27,9 +27,10 @@ export default function LandingPage() {
 
       <section className={styles.heroSection}>
         <Title gifProvider='animatedicons.co'/>
-        <Subtitle text='¿Tu vida elevarías?'/>
+        <Subtitle text='Creatividad menos forzosa'/>
         <h2 className={styles.heroQuestion}>
-          Poderosa tu mente, hazla más eficiente
+          Poderosa tu mente, hazla más eficiente<br/>
+          <i>¿Tu vida elevarías?</i>
         </h2>
       </section>
 
