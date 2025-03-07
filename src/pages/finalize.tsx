@@ -65,7 +65,8 @@ const FinalizePage: React.FC = () => {
   };
 
   return (
-    <CSRFGuard>
+    // <CSRFGuard>
+    <>
       <Head><title>Sellar AS</title></Head>
       <div className={styles.container}>
         
@@ -99,7 +100,7 @@ const FinalizePage: React.FC = () => {
                   textAlign: 'center'
                 }}
               />
-              <div className={landingStyles.solutionFeatures}>
+              <div className={landingStyles.solutionFeatures} style={{alignItems: 'center'}}>
                 <p style={{
                   color: 'var(--forth-color)',
                   marginBottom: '1rem',
@@ -159,7 +160,8 @@ const FinalizePage: React.FC = () => {
           </form>
         </div>
       </div>
-    </CSRFGuard>
+    </>
+    // </CSRFGuard>
   );
 };
 

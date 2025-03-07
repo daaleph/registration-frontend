@@ -16,16 +16,16 @@ const LoginPage: React.FC = () => {
 
     const authService = AuthService.getInstance();
 
-    useEffect(() => {
-        async function getInitialToken() {
-            try {
-                await authService.initialToken();
-            } catch (error) {
-                console.error('Failed to get CSRF token:', error);
-            }
-        }
-        getInitialToken();
-    }, []);
+    // useEffect(() => {
+    //     async function getInitialToken() {
+    //         try {
+    //             await authService.initialToken();
+    //         } catch (error) {
+    //             console.error('Failed to get CSRF token:', error);
+    //         }
+    //     }
+    //     getInitialToken();
+    // }, []);
   
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -61,7 +61,7 @@ const LoginPage: React.FC = () => {
             <div className={styles.heroSection}>
                 <Title gifProvider='animatedicons.co'/>
                 <p className={styles.subTitle}>Increasing universal wisdom</p>
-                <form className={styles.solutionSection} style={{maxWidth: '15rem'}} onSubmit={handleSubmit}>
+                <form className={styles.solutionSection} onSubmit={handleSubmit}>
                     <div className={styles.solutionFeatures}>
                         <div className={styles.feature} style={{border: 0}}>
                             <input

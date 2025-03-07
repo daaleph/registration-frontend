@@ -82,16 +82,16 @@ export default function LandingPage() {
         <h3 className={styles.calmText}>Simplifica el proceso</h3>
         <div className={styles.solutionFeatures}>
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>🎯</span>
             <p>Con tu psicología</p>
+            <span className={styles.featureIcon}>🎯</span>
           </div>
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>📊</span>
             <p>Material, resultados y feedback <i>personalizados</i></p>
+            <span className={styles.featureIcon}>📊</span>
           </div>
           <div className={styles.feature}>
-            <span className={styles.featureIcon}>✨</span>
             <p>Métodos eficaces garantizados</p>
+            <span className={styles.featureIcon}>✨</span>
           </div>
         </div>
       </section>
