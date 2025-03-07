@@ -8,6 +8,7 @@ const links = [
   { href: '/we', label: 'Nosotros' },
   { href: '/login', label: 'Entrar' },
   { href: '/register', label: 'Registro' },
+  { href: 'https://linktr.ee/AlephSpace', label: 'Nets' }
 ];
 
 
