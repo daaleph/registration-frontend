@@ -42,7 +42,12 @@ export default function LandingPage() {
                 ))}
             </section>
             
-            <Subtitle text="Comenzamos por esto"/>
+            <div>
+                <Subtitle text="Comenzamos por esto"/>
+                <h2 className={styles.heroQuestion}>
+                    Estudiando como locos
+                </h2>
+            </div>
             
             { studies.map((study, index) => (
                 <StudyCard key={index} {...study} />

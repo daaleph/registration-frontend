@@ -393,5 +393,5 @@
 }
 
 .link:hover {
-  color: var(--secondary-color);
+  color: var(--border-color);
 }
