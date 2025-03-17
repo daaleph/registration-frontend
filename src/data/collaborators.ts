@@ -49,16 +49,6 @@ const collaborators: Collaborator[] = [
       { url: `${socialUrls.instagram}javiflak`, icon: socialIcons.instagram }
     ],
   },
-  {
-    title: 'CET',
-    name: 'Alejandro Dimaté',
-    role: 'Chief Ethical Technologist',
-    studies: 'Geodesta e Ingeniero Catastral',
-    photo: `${basePeopleURl}ALEJANDRO-min${j}`,
-    socialLinks: [
-      { url: `${socialUrls.instagram}alejandrodimaterodriguez`, icon: socialIcons.youtube }
-    ],
-  },
   // Add more collaborators as needed
 ];
 
