@@ -39,6 +39,17 @@ const collaborators: Collaborator[] = [
     ],
   },
   {
+    title: 'CMS',
+    name: 'Daniela Lozano',
+    role: 'Chief Marketing Strategist',
+    studies: 'Comunicadora Social y Periodista',
+    photo: `${basePeopleURl}DANIELA${j}`,
+    socialLinks: [
+      { url: `${socialUrls.linkedin}daniela-lozano-arias-793825253`, icon: socialIcons.linkedin },
+      { url: `${socialUrls.instagram}18.daniela.12`, icon: socialIcons.instagram }
+    ],
+  },
+  {
     title: 'CGA',
     name: 'Javier Daza',
     role: 'Chief Growth Architect',
@@ -47,6 +58,17 @@ const collaborators: Collaborator[] = [
     socialLinks: [
       { url: `${socialUrls.linkedin}javier-daza-5201b1176`, icon: socialIcons.linkedin },
       { url: `${socialUrls.instagram}javiflak`, icon: socialIcons.instagram }
+    ],
+  },
+  {
+    title: 'CUE',
+    name: 'Andersson Prada',
+    role: 'User Engager',
+    studies: 'Graphic Designer',
+    photo: `${basePeopleURl}ANDERSON${j}`,
+    socialLinks: [
+      { url: `${socialUrls.linkedin}andersson-prada-a568ba159`, icon: socialIcons.linkedin },
+      { url: `${socialUrls.instagram}adssnj_`, icon: socialIcons.instagram }
     ],
   },
   // Add more collaborators as needed
