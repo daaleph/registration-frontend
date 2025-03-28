@@ -63,7 +63,7 @@ const collaborators: Collaborator[] = [
   {
     title: 'CUE',
     name: 'Andersson Prada',
-    role: 'User Engager',
+    role: 'Audience Engagement Artist',
     studies: 'Graphic Designer',
     photo: `${basePeopleURl}ANDERSON${j}`,
     socialLinks: [
