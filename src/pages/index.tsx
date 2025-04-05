@@ -36,20 +36,19 @@ export default function LandingPage() {
 
       <section className={styles.characterSection}>
         <div className={styles.characterCard}>
-          <h3 className={styles.gothicText}>Tú</h3>
-          <p className={styles.calmText}>
-            Alguien buscando <b>más</b>.<br/>
-            Para tu <b>familia</b>, tu <b>futuro</b>, el <b>mundo</b>.<br/>
-            <b>Imposible</b> sin <b>eficiencia</b>.
-          </p>
-        </div>
-
-        <div className={styles.characterCard}>
           <h3 className={styles.gothicText}>Nosotros</h3>
           <p className={styles.calmText}>
-            Garantizamos tu <b>potencial</b>.<br/>
-            Crecimiento <b>menos forzoso</b>.<br/>
-            Cumplen <b>algoritmos verificados</b>.
+            Garantizamos tu <b>potencial</b><br/>
+            Crecimiento <b>menos forzoso</b><br/>
+            Cumplen <b>algoritmos verificados</b>
+          </p>
+        </div>
+        <div className={styles.characterCard}>
+          <h3 className={styles.gothicText}>Tú</h3>
+          <p className={styles.calmText}>
+            Alguien buscando <b>más</b><br/>
+            Para tu <b>familia</b>, tu <b>futuro</b>, el <b>mundo</b><br/>
+            <b>Imposible</b> sin <b>eficiencia</b>
           </p>
         </div>
       </section>
