@@ -4,11 +4,11 @@
   --foreground: white;
   --primary-color: black;
   --secondary-color: white;
-  --third-color: rgba(255, 255, 255, 0.45);
-  --forth-color: rgb(135, 135, 135);
+  --third-color: #ffffff73;
+  --forth-color: #878787;
   --text-primary-color: white;
   --text-secondary-color: black;
-  --border-color: rgba(255, 255, 0, 0.446);
+  --border-color: #ffff0072;
   --error-color: #e74c3c;
 
   /* Font Families */
@@ -26,7 +26,7 @@
 
   /* Border and Shadows */
   --border-radius: 8px;
-  --box-shadow: 0 0 20px rgba(255, 255, 0, 0.1);
+  --box-shadow: 0 0 20px #ffff001a;
 }
 
 @media (prefers-color-scheme: dark) {
